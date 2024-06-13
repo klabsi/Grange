@@ -1,2 +1,6 @@
 rootProject.name = 'Grange'
+include 'henhouse'
+include 'guardhouse'
+include 'cowshed'
+include 'cheese-factory'
 
