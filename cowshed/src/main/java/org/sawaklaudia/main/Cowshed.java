@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CheeseFactoryApplication {
+public class Cowshed {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CheeseFactoryApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Cowshed.class, args);
+    }
 
 }
