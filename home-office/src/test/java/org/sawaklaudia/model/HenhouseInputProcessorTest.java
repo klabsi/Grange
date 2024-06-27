@@ -55,7 +55,7 @@ class HenhouseInputProcessorTest {
     @NullSource
     void shouldThrowsExceptionWhenProcessNullInput(HenhouseInput henhouseInput1) {
         //given when then
-        Assertions.assertThrows(NullPointerException.class, () -> henhouseInputProcessor.calculateNumOfEggsPerMonth(henhouseInput1,
+        Assertions.assertThrows(IllegalArgumentException.class, () -> henhouseInputProcessor.calculateNumOfEggsPerMonth(henhouseInput1,
                 henhouseInput2, henhouseInput3, henhouseInput4));
     }
 
@@ -72,6 +72,6 @@ class HenhouseInputProcessorTest {
     @NullSource
     void shouldThrowsExceptionWhenProcessNullAsInput(HenhouseInput henhouseInput1) {
         //given when then
-        Assertions.assertThrows(NullPointerException.class, () -> henhouseInputProcessor.processNumOfEggsPerPerson(henhouseInput1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> henhouseInputProcessor.processNumOfEggsPerPerson(henhouseInput1));
     }
 }

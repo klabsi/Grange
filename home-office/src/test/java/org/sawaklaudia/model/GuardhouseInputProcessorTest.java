@@ -55,7 +55,7 @@ class GuardhouseInputProcessorTest {
     @NullSource
     void shouldThrowsExceptionWhenProcessNullInput(GuardhouseInput guardhouseInput1) {
         //given when then
-        Assertions.assertThrows(NullPointerException.class, () -> guardhouseInputProcessor.calculateNumberOfFoxAttacksPerMonth(guardhouseInput1,
+        Assertions.assertThrows(IllegalArgumentException.class, () -> guardhouseInputProcessor.calculateNumberOfFoxAttacksPerMonth(guardhouseInput1,
                 guardhouseInput2, guardhouseInput3, guardhouseInput4));
     }
 
@@ -86,6 +86,6 @@ class GuardhouseInputProcessorTest {
     @NullSource
     void shouldThrowsExceptionWhenProcessNullAsInput(GuardhouseInput guardhouseInput1) {
         //given when then
-        Assertions.assertThrows(NullPointerException.class, () -> guardhouseInputProcessor.processNumberOfPersonPerFox(guardhouseInput1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> guardhouseInputProcessor.processNumberOfPersonPerFox(guardhouseInput1));
     }
 }

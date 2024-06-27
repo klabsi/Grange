@@ -55,7 +55,7 @@ class CowshedInputProcessorTest {
     @NullSource
     void shouldThrowsExceptionWhenProcessNullInput(CowshedInput cowshedInput1) {
         //given when then
-        Assertions.assertThrows(NullPointerException.class, () -> cowshedInputProcessor.calculateLitersOfMilkPerMonth(cowshedInput1,
+        Assertions.assertThrows(IllegalArgumentException.class, () -> cowshedInputProcessor.calculateLitersOfMilkPerMonth(cowshedInput1,
                 cowshedInput2, cowshedInput3, cowshedInput4));
     }
 
@@ -72,6 +72,6 @@ class CowshedInputProcessorTest {
     @NullSource
     void shouldThrowsExceptionWhenProcessNullAsInput(CowshedInput cowshedInput1) {
         //given when then
-        Assertions.assertThrows(NullPointerException.class, () -> cowshedInputProcessor.processLiterOfMilkPerPerson(cowshedInput1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> cowshedInputProcessor.processLiterOfMilkPerPerson(cowshedInput1));
     }
 }

@@ -51,7 +51,7 @@ class CheeseFactoryInputProcessorTest {
     @NullSource
     void shouldThrownExceptionWhenProcessNullInput(CheeseFactoryInput cheeseFactoryInput1) {
         //given when then
-        Assertions.assertThrows(NullPointerException.class, () -> cheeseFactoryInputProcessor.calculateKgOfCheesePerMonth(cheeseFactoryInput1, cheeseFactoryInput2,
+        Assertions.assertThrows(IllegalArgumentException.class, () -> cheeseFactoryInputProcessor.calculateKgOfCheesePerMonth(cheeseFactoryInput1, cheeseFactoryInput2,
                 cheeseFactoryInput3, cheeseFactoryInput4));
     }
 
@@ -67,6 +67,6 @@ class CheeseFactoryInputProcessorTest {
     @NullSource
     void shouldThrownExceptionWhenCalculateKgOfCheesePerPersonWithNullInput(CheeseFactoryInput cheeseFactoryInput1) {
         //given when then
-        Assertions.assertThrows(NullPointerException.class, () -> cheeseFactoryInputProcessor.processKgOfCheesePerPerson(cheeseFactoryInput1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> cheeseFactoryInputProcessor.processKgOfCheesePerPerson(cheeseFactoryInput1));
     }
 }
