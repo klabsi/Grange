@@ -7,6 +7,7 @@ import org.sawaklaudia.input.HenhouseInput;
 import org.sawaklaudia.model.*;
 import org.sawaklaudia.output.MonthlyReport;
 import org.sawaklaudia.output.WeeklyReport;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.Instant;
@@ -15,7 +16,7 @@ import java.util.List;
 @SpringBootApplication
 public class HomeOffice {
     public static void main(String[] args) {
-        //SpringApplication.run(HomeOffice.class, args);
+        SpringApplication.run(HomeOffice.class, args);
         System.out.println("### biuro domowe ###");
         List<CheeseFactoryInput> cheeseFactoryInputs = generateCheeseFactoryData();
         List<CowshedInput> cowshedInputs = generateCowshedData();
