@@ -27,4 +27,7 @@ public class CheeseFactoryReportEntity {
 
     @Column(name = "number_of_workers")
     private int numberOfWorkers;
+
+    @OneToOne(mappedBy = "cheeseFactoryReport")
+    private CheeseFactoryWeeklyReportEntity cheeseFactoryWeeklyReport;
 }

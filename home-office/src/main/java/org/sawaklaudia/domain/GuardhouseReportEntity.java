@@ -1,9 +1,6 @@
 package org.sawaklaudia.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
@@ -29,4 +26,7 @@ public class GuardhouseReportEntity {
 
     @Column(name = "number_of_workers")
     private int numberOfWorkers;
+
+    @OneToOne(mappedBy = "guardhouseReport")
+    private GuardhouseWeeklyReportEntity guardhouseWeeklyReport;
 }

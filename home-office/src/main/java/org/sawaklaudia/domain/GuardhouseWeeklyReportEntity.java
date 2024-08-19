@@ -21,4 +21,12 @@ public class GuardhouseWeeklyReportEntity {
     @Id
     @Column(name = "weekly_report_id")
     private Long weeklyReportId;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id")
+    private WeeklyReportEntity weeklyReport;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    private GuardhouseReportEntity guardhouseReport;
 }

@@ -1,12 +1,11 @@
 package org.sawaklaudia.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "monthly_report")
@@ -35,4 +34,7 @@ public class MonthlyReportEntity {
 
     @Column(name = "kg_of_cheese_per_person")
     private double kgOfCheesePerPerson;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "monthlyReport")
+    private List<WeeklyMonthlyReportEntity> weeklyMonthlyReports = new ArrayList<>();
 }

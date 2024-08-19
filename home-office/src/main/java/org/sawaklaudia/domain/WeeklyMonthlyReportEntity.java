@@ -21,4 +21,12 @@ public class WeeklyMonthlyReportEntity {
     @Id
     @Column(name = "monthly_report_id")
     private Long monthlyReportId;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id")
+    private MonthlyReportEntity monthlyReport;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    private WeeklyReportEntity weeklyReport;
 }

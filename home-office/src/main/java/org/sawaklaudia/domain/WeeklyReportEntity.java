@@ -1,12 +1,11 @@
 package org.sawaklaudia.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "weekly_report")
@@ -35,4 +34,19 @@ public class WeeklyReportEntity {
 
     @Column(name = "kg_of_cheese_per_person")
     private double kgOfCheesePerPerson;
+
+    @OneToOne(mappedBy = "weeklyReport")
+    private WeeklyMonthlyReportEntity weeklyMonthlyReport;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "weeklyReport")
+    private List<CheeseFactoryWeeklyReportEntity> cheeseFactoryWeeklyReports = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "weeklyReport")
+    private List<CowshedWeeklyReportEntity> cowshedWeeklyReports = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "weeklyReport")
+    private List<GuardhouseWeeklyReportEntity> guardhouseWeeklyReports = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "weeklyReport")
+    private List<HenhouseWeeklyReportEntity> henhouseWeeklyReports = new ArrayList<>();
 }
