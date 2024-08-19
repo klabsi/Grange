@@ -23,10 +23,10 @@ public class CheeseFactoryWeeklyReportEntity {
     private Long weeklyReportId;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "weekly_report_fk_id")
     private WeeklyReportEntity weeklyReport;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "cheese_factory_report_fk_id")
     private CheeseFactoryReportEntity cheeseFactoryReport;
 }

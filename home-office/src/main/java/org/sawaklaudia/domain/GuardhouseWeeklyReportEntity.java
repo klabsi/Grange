@@ -16,17 +16,17 @@ public class GuardhouseWeeklyReportEntity {
 
     @Id
     @Column(name = "guardhouse_report_id")
-    private Long guardHouseReportId;
+    private Long guardhouseReportId;
 
     @Id
     @Column(name = "weekly_report_id")
     private Long weeklyReportId;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "weekly_report_fk_id")
     private WeeklyReportEntity weeklyReport;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "guardhouse_report_fk_id")
     private GuardhouseReportEntity guardhouseReport;
 }

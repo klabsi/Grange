@@ -23,10 +23,10 @@ public class WeeklyMonthlyReportEntity {
     private Long monthlyReportId;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "monthly_report_fk_id")
     private MonthlyReportEntity monthlyReport;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "weekly_report_fk_id")
     private WeeklyReportEntity weeklyReport;
 }
