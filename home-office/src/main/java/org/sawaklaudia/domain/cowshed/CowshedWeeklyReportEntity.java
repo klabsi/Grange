@@ -30,4 +30,12 @@ public class CowshedWeeklyReportEntity {
     @OneToOne
     @JoinColumn(name = "cowshed_report_id")
     private CowshedReportEntity cowshedReport;
+
+    @Override
+    public String toString() {
+        return "CowshedWeeklyReportEntity{" +
+                "cowshedReportId=" + cowshedReportId +
+                ", weeklyReportId=" + weeklyReportId +
+                '}';
+    }
 }

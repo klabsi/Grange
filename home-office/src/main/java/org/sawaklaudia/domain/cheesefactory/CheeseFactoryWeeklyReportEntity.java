@@ -30,4 +30,12 @@ public class CheeseFactoryWeeklyReportEntity {
     @OneToOne
     @JoinColumn(name = "cheese_factory_report_id")
     private CheeseFactoryReportEntity cheeseFactoryReport;
+
+    @Override
+    public String toString() {
+        return "CheeseFactoryWeeklyReportEntity{" +
+                "cheeseFactoryReportId=" + cheeseFactoryReportId +
+                ", weeklyReportId=" + weeklyReportId +
+                '}';
+    }
 }

@@ -30,4 +30,12 @@ public class HenhouseWeeklyReportEntity {
     @OneToOne
     @JoinColumn(name = "henhouse_report_id")
     private HenhouseReportEntity henhouseReport;
+
+    @Override
+    public String toString() {
+        return "HenhouseWeeklyReportEntity{" +
+                "henhouseReportId=" + henhouseReportId +
+                ", weeklyReportId=" + weeklyReportId +
+                '}';
+    }
 }

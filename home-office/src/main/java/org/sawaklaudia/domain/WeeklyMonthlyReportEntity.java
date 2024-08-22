@@ -29,4 +29,12 @@ public class WeeklyMonthlyReportEntity {
     @OneToOne
     @JoinColumn(name = "weekly_report_id")
     private WeeklyReportEntity weeklyReport;
+
+    @Override
+    public String toString() {
+        return "WeeklyMonthlyReportEntity{" +
+                "weeklyReportId=" + weeklyReportId +
+                ", monthlyReportId=" + monthlyReportId +
+                '}';
+    }
 }

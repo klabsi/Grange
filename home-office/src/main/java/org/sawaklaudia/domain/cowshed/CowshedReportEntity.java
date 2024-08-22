@@ -30,4 +30,14 @@ public class CowshedReportEntity {
 
     @OneToOne(mappedBy = "cowshedReport")
     private CowshedWeeklyReportEntity cowshedWeeklyReport;
+
+    @Override
+    public String toString() {
+        return "CowshedReportEntity{" +
+                "cowshedReportId=" + cowshedReportId +
+                ", dateOfReport=" + dateOfReport +
+                ", litersOfMilk=" + litersOfMilk +
+                ", numberOfWorkers=" + numberOfWorkers +
+                '}';
+    }
 }

@@ -38,4 +38,16 @@ public class MonthlyReportEntity {
     @Builder.Default
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "monthlyReport")
     private List<WeeklyMonthlyReportEntity> weeklyMonthlyReports = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "MonthlyReportEntity{" +
+                "monthlyReportId=" + monthlyReportId +
+                ", dateOfReport=" + dateOfReport +
+                ", numberOfEggsPerPerson=" + numberOfEggsPerPerson +
+                ", litersOfMilkPerPerson=" + litersOfMilkPerPerson +
+                ", numberOfWorkersPerFox=" + numberOfWorkersPerFox +
+                ", kgOfCheesePerPerson=" + kgOfCheesePerPerson +
+                '}';
+    }
 }

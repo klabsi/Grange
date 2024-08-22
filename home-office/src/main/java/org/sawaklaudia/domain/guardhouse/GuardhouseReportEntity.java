@@ -29,4 +29,14 @@ public class GuardhouseReportEntity {
 
     @OneToOne(mappedBy = "guardhouseReport")
     private GuardhouseWeeklyReportEntity guardhouseWeeklyReport;
+
+    @Override
+    public String toString() {
+        return "GuardhouseReportEntity{" +
+                "guardhouseReportId=" + guardhouseReportId +
+                ", dateOfReport=" + dateOfReport +
+                ", numberOfFoxAttacks=" + numberOfFoxAttacks +
+                ", numberOfWorkers=" + numberOfWorkers +
+                '}';
+    }
 }
