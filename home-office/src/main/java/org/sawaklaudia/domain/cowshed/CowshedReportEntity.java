@@ -1,9 +1,10 @@
-package org.sawaklaudia.domain;
+package org.sawaklaudia.domain.cowshed;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.Instant;
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "cowshed_report")
@@ -19,7 +20,7 @@ public class CowshedReportEntity {
     private Long cowshedReportId;
 
     @Column(name = "date_of_report")
-    private Instant dateOfReport;
+    private LocalDate dateOfReport;
 
     @Column(name = "liters_of_milk")
     private double litersOfMilk;

@@ -1,9 +1,9 @@
-package org.sawaklaudia.domain;
+package org.sawaklaudia.domain.cheesefactory;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "cheese_factory_report")
@@ -20,7 +20,7 @@ public class CheeseFactoryReportEntity {
     private Long cheeseFactoryReportId;
 
     @Column(name = "date_of_report")
-    private Instant dateOfReport;
+    private LocalDate dateOfReport;
 
     @Column(name = "kg_of_cheese")
     private double kgOfCheese;

@@ -2,8 +2,12 @@ package org.sawaklaudia.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.sawaklaudia.domain.cheesefactory.CheeseFactoryWeeklyReportEntity;
+import org.sawaklaudia.domain.cowshed.CowshedWeeklyReportEntity;
+import org.sawaklaudia.domain.guardhouse.GuardhouseWeeklyReportEntity;
+import org.sawaklaudia.domain.henhouse.HenhouseWeeklyReportEntity;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +25,7 @@ public class WeeklyReportEntity {
     private Long weeklyReportId;
 
     @Column(name = "date_of_report")
-    private Instant dateOfReport;
+    private LocalDate dateOfReport;
 
     @Column(name = "number_of_eggs_per_person")
     private double numberOfEggsPerPerson;
@@ -38,15 +42,19 @@ public class WeeklyReportEntity {
     @OneToOne(mappedBy = "weeklyReport")
     private WeeklyMonthlyReportEntity weeklyMonthlyReport;
 
+    @Builder.Default
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "weeklyReport")
     private List<CheeseFactoryWeeklyReportEntity> cheeseFactoryWeeklyReports = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "weeklyReport")
     private List<CowshedWeeklyReportEntity> cowshedWeeklyReports = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "weeklyReport")
     private List<GuardhouseWeeklyReportEntity> guardhouseWeeklyReports = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "weeklyReport")
     private List<HenhouseWeeklyReportEntity> henhouseWeeklyReports = new ArrayList<>();
 }

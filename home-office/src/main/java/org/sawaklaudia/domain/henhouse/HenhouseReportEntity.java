@@ -1,9 +1,9 @@
-package org.sawaklaudia.domain;
+package org.sawaklaudia.domain.henhouse;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "henhouse_report")
@@ -19,7 +19,7 @@ public class HenhouseReportEntity {
     private Long henhouseReportId;
 
     @Column(name = "date_of_report")
-    private Instant dateOfReport;
+    private LocalDate dateOfReport;
 
     @Column(name = "number_of_eggs")
     private int numberOfEggs;

@@ -3,7 +3,7 @@ package org.sawaklaudia.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class MonthlyReportEntity {
     private Long monthlyReportId;
 
     @Column(name = "date_of_report")
-    private Instant dateOfReport;
+    private LocalDate dateOfReport;
 
     @Column(name = "number_of_eggs_per_person")
     private double numberOfEggsPerPerson;
@@ -35,6 +35,7 @@ public class MonthlyReportEntity {
     @Column(name = "kg_of_cheese_per_person")
     private double kgOfCheesePerPerson;
 
+    @Builder.Default
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "monthlyReport")
     private List<WeeklyMonthlyReportEntity> weeklyMonthlyReports = new ArrayList<>();
 }
