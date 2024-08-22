@@ -9,6 +9,7 @@ import org.sawaklaudia.model.*;
 import org.sawaklaudia.output.MonthlyReport;
 import org.sawaklaudia.output.WeeklyReport;
 import org.sawaklaudia.repositories.CheeseFactoryWeeklyReportRepository;
+import org.sawaklaudia.repositories.CowshedWeeklyReportRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -24,6 +25,9 @@ public class HomeOffice {
         CheeseFactoryWeeklyReportRepository cheeseWeeklyReportRepository = context.getBean(CheeseFactoryWeeklyReportRepository.class);
         List<CheeseFactoryWeeklyReportEntity> weeklyCheeseReports = cheeseWeeklyReportRepository.findAll();
         System.out.println(weeklyCheeseReports);
+
+        CowshedWeeklyReportRepository cowshedWeeklyReportRepository = context.getBean(CowshedWeeklyReportRepository.class);
+        System.out.println(cowshedWeeklyReportRepository.findAll());
     }
 
     public static void runApp(){
