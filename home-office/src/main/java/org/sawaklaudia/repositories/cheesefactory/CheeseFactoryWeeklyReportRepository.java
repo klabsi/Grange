@@ -1,9 +1,9 @@
-package org.sawaklaudia.repositories;
+package org.sawaklaudia.repositories.cheesefactory;
 
 import org.sawaklaudia.domain.cheesefactory.CheeseFactoryWeeklyReportEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CheeseFactoryWeeklyReportRepository extends JpaRepository <CheeseFactoryWeeklyReportEntity, Long> {
+public interface CheeseFactoryWeeklyReportRepository extends JpaRepository<CheeseFactoryWeeklyReportEntity, Long> {
 }

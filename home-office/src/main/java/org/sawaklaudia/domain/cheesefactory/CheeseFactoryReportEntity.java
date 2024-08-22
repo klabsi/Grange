@@ -37,6 +37,7 @@ public class CheeseFactoryReportEntity {
                 "cheeseFactoryReportId=" + cheeseFactoryReportId +
                 ", dateOfReport=" + dateOfReport +
                 ", kgOfCheese=" + kgOfCheese +
-                ", numberOfWorkers=" + numberOfWorkers + '}';
+                ", numberOfWorkers=" + numberOfWorkers +
+                '}';
     }
 }

@@ -35,6 +35,7 @@ public class CheeseFactoryWeeklyReportEntity {
     public String toString() {
         return "CheeseFactoryWeeklyReportEntity{" +
                 "cheeseFactoryReportId=" + cheeseFactoryReportId +
-                ", weeklyReportId=" + weeklyReportId + "}";
+                ", weeklyReportId=" + weeklyReportId +
+                '}';
     }
 }

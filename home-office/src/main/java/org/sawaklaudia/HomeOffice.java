@@ -8,14 +8,13 @@ import org.sawaklaudia.input.HenhouseInput;
 import org.sawaklaudia.model.*;
 import org.sawaklaudia.output.MonthlyReport;
 import org.sawaklaudia.output.WeeklyReport;
-import org.sawaklaudia.repositories.CheeseFactoryWeeklyReportRepository;
-import org.sawaklaudia.repositories.CowshedWeeklyReportRepository;
+import org.sawaklaudia.repositories.cheesefactory.CheeseFactoryWeeklyReportRepository;
+import org.sawaklaudia.repositories.cowshed.CowshedWeeklyReportRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication

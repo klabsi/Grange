@@ -57,4 +57,16 @@ public class WeeklyReportEntity {
     @Builder.Default
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "weeklyReport")
     private List<HenhouseWeeklyReportEntity> henhouseWeeklyReports = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "WeeklyReportEntity{" +
+                "weeklyReportId=" + weeklyReportId +
+                ", dateOfReport=" + dateOfReport +
+                ", numberOfEggsPerPerson=" + numberOfEggsPerPerson +
+                ", litersOfMilkPerPerson=" + litersOfMilkPerPerson +
+                ", numberOfWorkersPerFox=" + numberOfWorkersPerFox +
+                ", kgOfCheesePerPerson=" + kgOfCheesePerPerson +
+                '}';
+    }
 }
