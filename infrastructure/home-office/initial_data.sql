@@ -38,25 +38,33 @@ kg_of_cheese_per_person DOUBLE PRECISION
 CREATE TABLE henhouse_weekly_report (
 henhouse_report_id INT,
 weekly_report_id INT,
-PRIMARY KEY (henhouse_report_id, weekly_report_id)
+PRIMARY KEY (henhouse_report_id, weekly_report_id),
+CONSTRAINT henhouse_report_id FOREIGN KEY(henhouse_report_id) REFERENCES henhouse_report(id),
+CONSTRAINT weekly_report_id FOREIGN KEY(weekly_report_id) REFERENCES weekly_report(id)
 );
 
 CREATE TABLE cheese_factory_weekly_report (
 cheese_factory_report_id INT,
 weekly_report_id INT,
-PRIMARY KEY (cheese_factory_report_id, weekly_report_id)
+PRIMARY KEY (cheese_factory_report_id, weekly_report_id),
+CONSTRAINT cheese_factory_report_id FOREIGN KEY(cheese_factory_report_id) REFERENCES cheese_factory_report(id),
+CONSTRAINT weekly_report_id FOREIGN KEY(weekly_report_id) REFERENCES weekly_report(id)
 );
 
 CREATE TABLE cowshed_weekly_report (
 cowshed_report_id INT,
 weekly_report_id INT,
-PRIMARY KEY (cowshed_report_id, weekly_report_id)
+PRIMARY KEY (cowshed_report_id, weekly_report_id),
+CONSTRAINT cowshed_report_id FOREIGN KEY(cowshed_report_id) REFERENCES cowshed_report(id),
+CONSTRAINT weekly_report_id FOREIGN KEY(weekly_report_id) REFERENCES weekly_report(id)
 );
 
 CREATE TABLE guardhouse_weekly_report (
 guardhouse_report_id INT,
 weekly_report_id INT,
-PRIMARY KEY (guardhouse_report_id, weekly_report_id)
+PRIMARY KEY (guardhouse_report_id, weekly_report_id),
+CONSTRAINT guardhouse_report_id FOREIGN KEY(guardhouse_report_id) REFERENCES guardhouse_report(id),
+CONSTRAINT weekly_report_id FOREIGN KEY(weekly_report_id) REFERENCES weekly_report(id)
 );
 
 CREATE TABLE monthly_report (
@@ -71,5 +79,7 @@ kg_of_cheese_per_person DOUBLE PRECISION
 CREATE TABLE weekly_monthly_report (
 weekly_report_id INT,
 monthly_report_id INT,
-PRIMARY KEY (weekly_report_id, monthly_report_id)
+PRIMARY KEY (weekly_report_id, monthly_report_id),
+CONSTRAINT weekly_report_id FOREIGN KEY(weekly_report_id) REFERENCES weekly_report(id),
+CONSTRAINT monthly_report_id FOREIGN KEY(monthly_report_id) REFERENCES monthly_report(id)
 );
