@@ -10,7 +10,7 @@ import org.sawaklaudia.output.WeeklyReport;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootApplication
@@ -54,25 +54,25 @@ public class HomeOffice {
         CheeseFactoryInput cheeseFactoryInput1 = CheeseFactoryInput.builder()
                 .kgOfCheesePerWeek(12)
                 .numberOfWorkersPerWeek(2)
-                .dateOfReport(Instant.parse("2024-06-03T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,3))
                 .build();
 
         CheeseFactoryInput cheeseFactoryInput2 = CheeseFactoryInput.builder()
                 .kgOfCheesePerWeek(11)
                 .numberOfWorkersPerWeek(2)
-                .dateOfReport(Instant.parse("2024-06-10T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6, 10))
                 .build();
 
         CheeseFactoryInput cheeseFactoryInput3 = CheeseFactoryInput.builder()
                 .kgOfCheesePerWeek(4)
                 .numberOfWorkersPerWeek(2)
-                .dateOfReport(Instant.parse("2024-06-17T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,17))
                 .build();
 
         CheeseFactoryInput cheeseFactoryInput4 = CheeseFactoryInput.builder()
                 .kgOfCheesePerWeek(8)
                 .numberOfWorkersPerWeek(2)
-                .dateOfReport(Instant.parse("2024-06-24T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,24))
                 .build();
 
         return List.of(cheeseFactoryInput1, cheeseFactoryInput2, cheeseFactoryInput3, cheeseFactoryInput4);
@@ -82,25 +82,25 @@ public class HomeOffice {
         HenhouseInput henhouseInput1 = HenhouseInput.builder()
                 .numberOfEggsPerWeek(28)
                 .numberOfWorkersPerWeek(4)
-                .dateOfReport(Instant.parse("2024-06-03T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,3))
                 .build();
 
         HenhouseInput henhouseInput2 = HenhouseInput.builder()
                 .numberOfEggsPerWeek(20)
                 .numberOfWorkersPerWeek(3)
-                .dateOfReport(Instant.parse("2024-06-10T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,10))
                 .build();
 
         HenhouseInput henhouseInput3 = HenhouseInput.builder()
                 .numberOfEggsPerWeek(30)
                 .numberOfWorkersPerWeek(4)
-                .dateOfReport(Instant.parse("2024-06-17T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,17))
                 .build();
 
         HenhouseInput henhouseInput4 = HenhouseInput.builder()
                 .numberOfEggsPerWeek(22)
                 .numberOfWorkersPerWeek(4)
-                .dateOfReport(Instant.parse("2024-06-24T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,24))
                 .build();
 
         return List.of(henhouseInput1, henhouseInput2, henhouseInput3, henhouseInput4);
@@ -110,25 +110,25 @@ public class HomeOffice {
         GuardhouseInput guardhouseInput1 = GuardhouseInput.builder()
                 .numberOfFoxAttacksPerWeek(0)
                 .numberOfWorkersPerWeek(2)
-                .dateOfReport(Instant.parse("2024-06-03T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,3))
                 .build();
 
         GuardhouseInput guardhouseInput2 = GuardhouseInput.builder()
                 .numberOfFoxAttacksPerWeek(0)
                 .numberOfWorkersPerWeek(2)
-                .dateOfReport(Instant.parse("2024-06-03T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,10))
                 .build();
 
         GuardhouseInput guardhouseInput3 = GuardhouseInput.builder()
                 .numberOfFoxAttacksPerWeek(1)
                 .numberOfWorkersPerWeek(2)
-                .dateOfReport(Instant.parse("2024-06-03T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,17))
                 .build();
 
         GuardhouseInput guardhouseInput4 = GuardhouseInput.builder()
                 .numberOfFoxAttacksPerWeek(1)
                 .numberOfWorkersPerWeek(2)
-                .dateOfReport(Instant.parse("2024-06-03T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,24))
                 .build();
         return List.of(guardhouseInput1, guardhouseInput2, guardhouseInput3, guardhouseInput4);
     }
@@ -137,25 +137,25 @@ public class HomeOffice {
         CowshedInput cowshedInput1 = CowshedInput.builder()
                 .litersOfMilkPerWeek(52)
                 .numberOfWorkersPerWeek(8)
-                .dateOfReport(Instant.parse("2024-06-03T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,3))
                 .build();
 
         CowshedInput cowshedInput2 = CowshedInput.builder()
                 .litersOfMilkPerWeek(58)
                 .numberOfWorkersPerWeek(9)
-                .dateOfReport(Instant.parse("2024-06-03T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,10))
                 .build();
 
         CowshedInput cowshedInput3 = CowshedInput.builder()
                 .litersOfMilkPerWeek(50)
                 .numberOfWorkersPerWeek(8)
-                .dateOfReport(Instant.parse("2024-06-03T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,17))
                 .build();
 
         CowshedInput cowshedInput4 = CowshedInput.builder()
                 .litersOfMilkPerWeek(59)
                 .numberOfWorkersPerWeek(8)
-                .dateOfReport(Instant.parse("2024-06-03T00:00:00.00Z"))
+                .dateOfReport(LocalDate.of(2024, 6,24))
                 .build();
         return List.of(cowshedInput1, cowshedInput2, cowshedInput3, cowshedInput4);
     }
