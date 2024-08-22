@@ -1,33 +1,33 @@
 create table henhouse_report (
-id int primary key,
+id serial primary key,
 date_of_report date,
 number_of_eggs int,
 number_of_workers int
 );
 
 create table cheese_factory_report (
-id int primary key,
+id serial primary key,
 date_of_report date,
 kg_of_cheese double precision,
 number_of_workers int
 );
 
 create table cowshed_report (
-id int primary key,
+id serial primary key,
 date_of_report date,
 liters_of_milk double precision,
 number_of_workers int
 );
 
 create table guardhouse_report (
-id int primary key,
+id serial primary key,
 date_of_report date,
 number_of_fox_attacks int,
 number_of_workers int
 );
 
 create table weekly_report (
-id int primary key,
+id serial primary key,
 date_of_report date,
 number_of_eggs_per_person double precision,
 liters_of_milk_per_person double precision,
@@ -60,7 +60,7 @@ primary key (guardhouse_report_id, weekly_report_id)
 );
 
 create table monthly_report (
-id int primary key,
+id serial primary key,
 date_of_report date,
 number_of_eggs_per_person double precision,
 liters_of_milk_per_person double precision,

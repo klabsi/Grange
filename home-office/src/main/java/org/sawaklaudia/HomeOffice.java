@@ -1,5 +1,6 @@
 package org.sawaklaudia;
 
+import org.sawaklaudia.domain.cheesefactory.CheeseFactoryWeeklyReportEntity;
 import org.sawaklaudia.input.CheeseFactoryInput;
 import org.sawaklaudia.input.CowshedInput;
 import org.sawaklaudia.input.GuardhouseInput;
@@ -7,16 +8,25 @@ import org.sawaklaudia.input.HenhouseInput;
 import org.sawaklaudia.model.*;
 import org.sawaklaudia.output.MonthlyReport;
 import org.sawaklaudia.output.WeeklyReport;
+import org.sawaklaudia.repositories.CheeseFactoryWeeklyReportRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
 public class HomeOffice {
     public static void main(String[] args) {
-        SpringApplication.run(HomeOffice.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(HomeOffice.class, args);
+        CheeseFactoryWeeklyReportRepository cheeseWeeklyReportRepository = context.getBean(CheeseFactoryWeeklyReportRepository.class);
+        List<CheeseFactoryWeeklyReportEntity> weeklyCheeseReports = cheeseWeeklyReportRepository.findAll();
+        System.out.println(weeklyCheeseReports);
+    }
+
+    public static void runApp(){
         System.out.println("### biuro domowe ###");
         List<CheeseFactoryInput> cheeseFactoryInputs = generateCheeseFactoryData();
         List<CowshedInput> cowshedInputs = generateCowshedData();
