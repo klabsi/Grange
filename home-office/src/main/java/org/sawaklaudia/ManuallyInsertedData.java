@@ -9,9 +9,10 @@ import org.sawaklaudia.model.*;
 import java.time.LocalDate;
 import java.util.List;
 
-public class ManuallyInsertedData {
+public class ManuallyInsertedData implements AppLaunchType {
 
-    public static void runApp(){
+    @Override
+    public void runApp(){
         System.out.println("### biuro domowe ###");
         List<CheeseFactoryInput> cheeseFactoryInputs = generateCheeseFactoryData();
         List<CowshedInput> cowshedInputs = generateCowshedData();
