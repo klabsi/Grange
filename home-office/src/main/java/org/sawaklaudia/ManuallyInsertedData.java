@@ -11,7 +11,7 @@ import org.sawaklaudia.output.WeeklyReport;
 import java.time.LocalDate;
 import java.util.List;
 
-public class OldCode {
+public class ManuallyInsertedData {
 
     public static void runApp(){
         System.out.println("### biuro domowe ###");
