@@ -4,4 +4,5 @@ include 'guardhouse'
 include 'cowshed'
 include 'cheese-factory'
 include 'home-office'
+include 'infrastructure'
 
