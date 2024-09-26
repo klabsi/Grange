@@ -8,3 +8,15 @@ services:
     container_name: home-office-database
     ports:
       - 5555:5432
+  home-office-service:
+    build:
+      context: ../home-office
+      dockerfile: ../infrastructure/home-office/service/Dockerfile
+    environment:
+      db_username:
+      db_password:
+    container_name: home-office-service
+    ports:
+      - 8080:8080
+    depends_on:
+      - home-office-database
