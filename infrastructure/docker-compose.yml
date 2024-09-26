@@ -1,0 +1,10 @@
+services:
+  home-office-database:
+    build:
+      context: ./home-office/database
+    environment:
+      POSTGRES_PASSWORD:
+      POSTGRES_USER:
+    container_name: home-office-database
+    ports:
+      - 5555:5432
