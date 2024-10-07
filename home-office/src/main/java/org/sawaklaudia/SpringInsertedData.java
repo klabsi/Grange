@@ -3,10 +3,12 @@ package org.sawaklaudia;
 import org.sawaklaudia.domain.cheesefactory.CheeseFactoryWeeklyReportEntity;
 import org.sawaklaudia.domain.cowshed.CowshedReportEntity;
 import org.sawaklaudia.model.CowshedInputProcessor;
+import org.sawaklaudia.repositories.WeeklyReportRepository;
 import org.sawaklaudia.repositories.cheesefactory.CheeseFactoryReportRepository;
 import org.sawaklaudia.repositories.cheesefactory.CheeseFactoryWeeklyReportRepository;
 import org.sawaklaudia.repositories.cowshed.CowshedReportRepository;
 import org.sawaklaudia.repositories.cowshed.CowshedWeeklyReportRepository;
+import org.sawaklaudia.service.WeeklyReportService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -38,7 +40,11 @@ public class SpringInsertedData implements AppLaunchType {
         cowshedReportRepository.save(buildCowshedData(LocalDate.of(2024, 10, 7), 5, 42));
 
         CowshedInputProcessor cowshedInputProcessor = new CowshedInputProcessor();
-        //cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek();
+        WeeklyReportRepository weeklyReportRepository = context.getBean(WeeklyReportRepository.class);
+        WeeklyReportService weeklyReportService = new WeeklyReportService(cowshedReportRepository, cowshedInputProcessor, weeklyReportRepository);
+        LocalDate dateOdReport = LocalDate.of(2024,10,8);
+        double avrCowshedWorkersProductivity = weeklyReportService.calculateWeeklyCowshedData(dateOdReport);
+        weeklyReportService.saveWeeklyReport(dateOdReport, avrCowshedWorkersProductivity);
     }
 
     private static CowshedReportEntity buildCowshedData(LocalDate dateOfReport, int numberOfWorkers, double litersOfMilk) {
