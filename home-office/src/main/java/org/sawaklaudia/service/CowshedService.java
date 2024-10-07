@@ -23,8 +23,16 @@ public class CowshedService {
     private static CowshedReportEntity convertToCowshedReportEntity(CowshedInput cowshedInput) {
         return CowshedReportEntity.builder()
                 .dateOfReport(cowshedInput.getDateOfReport())
-                .litersOfMilk(cowshedInput.getLitersOfMilkPerWeek())
-                .numberOfWorkers(cowshedInput.getNumberOfWorkersPerWeek())
+                .litersOfMilk(cowshedInput.getLitersOfMilk())
+                .numberOfWorkers(cowshedInput.getNumberOfWorkers())
+                .build();
+    }
+
+    public static CowshedInput convertToCowshedInput(CowshedReportEntity cowshedReport) {
+        return CowshedInput.builder()
+                .dateOfReport(cowshedReport.getDateOfReport())
+                .litersOfMilk(cowshedReport.getLitersOfMilk())
+                .numberOfWorkers(cowshedReport.getNumberOfWorkers())
                 .build();
     }
 }

@@ -24,23 +24,23 @@ class CowshedInputProcessorTest {
     void setUp() {
         cowshedInputProcessor = new CowshedInputProcessor();
         cowshedInput1 = CowshedInput.builder()
-                .litersOfMilkPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .litersOfMilk(1)
+                .numberOfWorkers(1)
                 .build();
 
         cowshedInput2 = CowshedInput.builder()
-                .litersOfMilkPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .litersOfMilk(1)
+                .numberOfWorkers(1)
                 .build();
 
         cowshedInput3 = CowshedInput.builder()
-                .litersOfMilkPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .litersOfMilk(1)
+                .numberOfWorkers(1)
                 .build();
 
         cowshedInput4 = CowshedInput.builder()
-                .litersOfMilkPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .litersOfMilk(1)
+                .numberOfWorkers(1)
                 .build();
 
         cowshedInputsFromAWeek = List.of(cowshedInput1, cowshedInput2, cowshedInput3, cowshedInput4);

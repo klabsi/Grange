@@ -12,8 +12,8 @@ public class CowshedInputProcessor {
             throw new IllegalArgumentException("Cowshed input cannot be null.");
         }
 
-        return cowshedInput1.getLitersOfMilkPerWeek() + cowshedInput2.getLitersOfMilkPerWeek()
-                + cowshedInput3.getLitersOfMilkPerWeek() + cowshedInput4.getLitersOfMilkPerWeek();
+        return cowshedInput1.getLitersOfMilk() + cowshedInput2.getLitersOfMilk()
+                + cowshedInput3.getLitersOfMilk() + cowshedInput4.getLitersOfMilk();
     }
 
     public double calcLitersOfMilkPerWorkerPerWeek(List<CowshedInput> cowshedInputsFromAWeek) {
@@ -22,8 +22,8 @@ public class CowshedInputProcessor {
         double totalLitersOfMilk = 0;
         int totalNumberOfWorkers = 0;
         for (CowshedInput input : cowshedInputsFromAWeek) {
-            totalLitersOfMilk += input.getLitersOfMilkPerWeek();
-            totalNumberOfWorkers += input.getNumberOfWorkersPerWeek();
+            totalLitersOfMilk += input.getLitersOfMilk();
+            totalNumberOfWorkers += input.getNumberOfWorkers();
         }
         return totalLitersOfMilk/totalNumberOfWorkers;
     }
