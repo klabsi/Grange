@@ -17,6 +17,8 @@ public class CowshedReportEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cowshed_seq")
+    @SequenceGenerator(name = "cowshed_seq", sequenceName = "cowshed_seq", allocationSize = 1)
     private Long cowshedReportId;
 
     @Column(name = "date_of_report")

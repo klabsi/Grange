@@ -1,3 +1,6 @@
+CREATE SEQUENCE IF NOT EXISTS cowshed_seq;
+CREATE SEQUENCE IF NOT EXISTS weekly_report_seq;
+
 CREATE TABLE henhouse_report (
 id SERIAL PRIMARY KEY,
 date_of_report DATE,

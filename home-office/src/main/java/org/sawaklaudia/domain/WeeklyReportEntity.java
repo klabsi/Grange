@@ -22,6 +22,8 @@ public class WeeklyReportEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "weekly_report_seq")
+    @SequenceGenerator(name = "weekly_report_seq", sequenceName = "weekly_report_seq", allocationSize = 1)
     private Long weeklyReportId;
 
     @Column(name = "date_of_report")

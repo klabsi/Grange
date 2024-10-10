@@ -1,9 +1,11 @@
 package org.sawaklaudia.model;
 
 import org.sawaklaudia.input.CowshedInput;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class CowshedInputProcessor {
 
     public double calcTotalLitersOfMilkPerMonth(CowshedInput cowshedInput1, CowshedInput cowshedInput2, CowshedInput cowshedInput3,

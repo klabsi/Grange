@@ -2,10 +2,12 @@ package org.sawaklaudia.service;
 
 import org.sawaklaudia.domain.WeeklyReportEntity;
 import org.sawaklaudia.domain.cowshed.CowshedReportEntity;
+import org.sawaklaudia.domain.cowshed.CowshedWeeklyReportEntity;
 import org.sawaklaudia.input.CowshedInput;
 import org.sawaklaudia.model.CowshedInputProcessor;
 import org.sawaklaudia.repositories.WeeklyReportRepository;
 import org.sawaklaudia.repositories.cowshed.CowshedReportRepository;
+import org.sawaklaudia.repositories.cowshed.CowshedWeeklyReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,17 +21,22 @@ public class WeeklyReportService {
     private CowshedReportRepository cowshedReportRepository;
     private CowshedInputProcessor cowshedInputProcessor;
     private WeeklyReportRepository weeklyReportRepository;
+    private CowshedWeeklyReportRepository cowshedWeeklyReportRepository;
 
     @Autowired
-    public WeeklyReportService(CowshedReportRepository cowshedReportRepository, CowshedInputProcessor cowshedInputProcessor, WeeklyReportRepository weeklyReportRepository) {
+    public WeeklyReportService(CowshedReportRepository cowshedReportRepository,
+                               CowshedInputProcessor cowshedInputProcessor,
+                               WeeklyReportRepository weeklyReportRepository,
+                               CowshedWeeklyReportRepository cowshedWeeklyReportRepository) {
         this.cowshedReportRepository = cowshedReportRepository;
         this.cowshedInputProcessor = cowshedInputProcessor;
         this.weeklyReportRepository = weeklyReportRepository;
+        this.cowshedWeeklyReportRepository = cowshedWeeklyReportRepository;
     }
 
     public List<CowshedReportEntity> getCowshedDataFromAWeek (LocalDate dateOfReport) {
-        String startDate = dateOfReport.minusDays(7).toString();
-        String endDate = dateOfReport.minusDays(1).toString();
+        LocalDate startDate = dateOfReport.minusDays(7);
+        LocalDate endDate = dateOfReport.minusDays(1);
         return cowshedReportRepository.findAllReportsOfAWeek(startDate, endDate);
     }
 
@@ -37,12 +44,20 @@ public class WeeklyReportService {
         List<CowshedReportEntity> cowshedWeeklyEntries = getCowshedDataFromAWeek(dateOfReport);
         List<CowshedInput> cowshedInputs = cowshedWeeklyEntries.stream()
                 .map(CowshedService::convertToCowshedInput)
-                .collect(Collectors.toList());
+                .toList();
         return cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek(cowshedInputs);
     }
 
-    public void saveWeeklyReport(LocalDate dateOfReport, double litersOfMilkPerWorker) { // in the
-        weeklyReportRepository.save(convertToWeeklyReportEntity(dateOfReport, litersOfMilkPerWorker));
+    public void saveWeeklyReport(LocalDate dateOfReport, double litersOfMilkPerWorker) {
+        WeeklyReportEntity weeklyReportEntity = weeklyReportRepository.save(convertToWeeklyReportEntity(dateOfReport, litersOfMilkPerWorker));
+        var weeklyReportId = weeklyReportEntity.getWeeklyReportId();
+        var cowshedReportIds = getCowshedDataFromAWeek(dateOfReport).stream()
+                .map(CowshedReportEntity::getCowshedReportId)
+                .toList();
+        for (Long cowshedReportId : cowshedReportIds) {
+            cowshedWeeklyReportRepository.insert(cowshedReportId, weeklyReportId);
+        }
+
     }
 
     private WeeklyReportEntity convertToWeeklyReportEntity (LocalDate dateOfReport, double litersOfMilkPerWorker) {
