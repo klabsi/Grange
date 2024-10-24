@@ -2,7 +2,6 @@ package org.sawaklaudia.service;
 
 import org.sawaklaudia.domain.WeeklyReportEntity;
 import org.sawaklaudia.domain.cowshed.CowshedReportEntity;
-import org.sawaklaudia.domain.cowshed.CowshedWeeklyReportEntity;
 import org.sawaklaudia.input.CowshedInput;
 import org.sawaklaudia.model.CowshedInputProcessor;
 import org.sawaklaudia.repositories.WeeklyReportRepository;
@@ -10,10 +9,10 @@ import org.sawaklaudia.repositories.cowshed.CowshedReportRepository;
 import org.sawaklaudia.repositories.cowshed.CowshedWeeklyReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class WeeklyReportService {
@@ -48,6 +47,7 @@ public class WeeklyReportService {
         return cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek(cowshedInputs);
     }
 
+    @Transactional
     public void saveWeeklyReport(LocalDate dateOfReport, double litersOfMilkPerWorker) {
         WeeklyReportEntity weeklyReportEntity = weeklyReportRepository.save(convertToWeeklyReportEntity(dateOfReport, litersOfMilkPerWorker));
         var weeklyReportId = weeklyReportEntity.getWeeklyReportId();
@@ -55,7 +55,7 @@ public class WeeklyReportService {
                 .map(CowshedReportEntity::getCowshedReportId)
                 .toList();
         for (Long cowshedReportId : cowshedReportIds) {
-            cowshedWeeklyReportRepository.insert(cowshedReportId, weeklyReportId);
+           cowshedWeeklyReportRepository.insert(cowshedReportId, weeklyReportId);
         }
 
     }
