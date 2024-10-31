@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.sawaklaudia.domain.WeeklyReportEntity;
 import org.sawaklaudia.domain.cowshed.CowshedReportEntity;
 import org.sawaklaudia.model.CowshedInputProcessor;
 import org.sawaklaudia.repositories.WeeklyReportRepository;
@@ -14,6 +15,10 @@ import org.sawaklaudia.repositories.cowshed.CowshedWeeklyReportRepository;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class WeeklyReportServiceTest {
@@ -41,11 +46,11 @@ class WeeklyReportServiceTest {
         List<CowshedReportEntity> allReports = List.of(
                 CowshedReportEntity.builder()
                         .cowshedReportId(1L)
-                        .dateOfReport(LocalDate.of(2024, 10, 01))
+                        .dateOfReport(LocalDate.of(2024, 10, 1))
                         .build(),
                 CowshedReportEntity.builder()
                         .cowshedReportId(2L)
-                        .dateOfReport(LocalDate.of(2024, 10, 01))
+                        .dateOfReport(LocalDate.of(2024, 10, 1))
                         .build()
         );
 
@@ -63,19 +68,19 @@ class WeeklyReportServiceTest {
         List<CowshedReportEntity> allReports = List.of(
                 CowshedReportEntity.builder()
                         .cowshedReportId(1L)
-                        .dateOfReport(LocalDate.of(2024, 10, 01))
+                        .dateOfReport(LocalDate.of(2024, 10, 1))
                         .build(),
                 CowshedReportEntity.builder()
                         .cowshedReportId(2L)
-                        .dateOfReport(LocalDate.of(2024, 10, 01))
+                        .dateOfReport(LocalDate.of(2024, 10, 1))
                         .build(),
                 CowshedReportEntity.builder()
                         .cowshedReportId(3L)
-                        .dateOfReport(LocalDate.of(2024, 10, 01))
+                        .dateOfReport(LocalDate.of(2024, 10, 1))
                         .build(),
                 CowshedReportEntity.builder()
                         .cowshedReportId(4L)
-                        .dateOfReport(LocalDate.of(2024, 10, 02))
+                        .dateOfReport(LocalDate.of(2024, 10, 2))
                         .build()
         );
 
@@ -85,5 +90,21 @@ class WeeklyReportServiceTest {
         //then
         Assertions.assertEquals(2, filteredReports.size());
         Assertions.assertEquals(3, filteredReports.get(0).getCowshedReportId());
+    }
+
+    @Test
+    void testSaveWeeklyReport() {
+        //given
+        LocalDate reportDate = LocalDate.of(2024, 10, 1);
+        double litersOfMilkPerWorker = 1;
+        WeeklyReportEntity savedWeeklyReport = new WeeklyReportEntity();
+
+        when(weeklyReportRepository.save(any())).thenReturn(savedWeeklyReport);
+
+        //when
+        weeklyReportService.saveWeeklyReport(reportDate, litersOfMilkPerWorker);
+
+        //then
+        verify(weeklyReportRepository).save(any());
     }
 }

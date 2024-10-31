@@ -81,7 +81,6 @@ public class WeeklyReportService {
         for (Long cowshedReportId : cowshedReportIds) {
            cowshedWeeklyReportRepository.insert(cowshedReportId, weeklyReportId);
         }
-
     }
 
     private WeeklyReportEntity convertToWeeklyReportEntity (LocalDate dateOfReport, double litersOfMilkPerWorker) {
