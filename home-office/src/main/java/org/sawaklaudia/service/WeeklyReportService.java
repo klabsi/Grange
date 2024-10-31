@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class WeeklyReportService {
@@ -36,7 +36,31 @@ public class WeeklyReportService {
     public List<CowshedReportEntity> getCowshedDataFromAWeek (LocalDate dateOfReport) {
         LocalDate startDate = dateOfReport.minusDays(7);
         LocalDate endDate = dateOfReport.minusDays(1);
-        return cowshedReportRepository.findAllReportsOfAWeek(startDate, endDate);
+        List<CowshedReportEntity> allReportsOfAWeek = cowshedReportRepository.findAllReportsOfAWeek(startDate, endDate);
+        return filterDuplicatedCowshedDataFromAWeek(allReportsOfAWeek);
+    }
+    
+    public List<CowshedReportEntity> filterDuplicatedCowshedDataFromAWeek (List<CowshedReportEntity> allReportsOfAWeek) {
+        List<CowshedReportEntity> filteredReports = new ArrayList<>();
+        Map<LocalDate, CowshedReportEntity> existingReports = new HashMap<>();
+
+        for(CowshedReportEntity entity : allReportsOfAWeek) {
+            LocalDate reportDate = entity.getDateOfReport();
+            if(existingReports.containsKey(reportDate)) {
+                CowshedReportEntity latestReport = existingReports.get(reportDate);
+                long entityId = entity.getCowshedReportId();
+                long latestReportId = latestReport.getCowshedReportId();
+                if(entityId > latestReportId) {
+                    filteredReports.remove(latestReport);
+                    filteredReports.add(entity);
+                    existingReports.put(reportDate, entity);
+                }
+            } else {
+                existingReports.put(reportDate, entity);
+                filteredReports.add(entity);
+            }
+        }
+        return filteredReports;
     }
 
     public double calculateWeeklyCowshedData(LocalDate dateOfReport) {
