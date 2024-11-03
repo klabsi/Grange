@@ -44,14 +44,8 @@ class WeeklyReportServiceTest {
     void shouldReturnReportWithALargerId() {
         //given
         List<CowshedReportEntity> allReports = List.of(
-                CowshedReportEntity.builder()
-                        .cowshedReportId(1L)
-                        .dateOfReport(LocalDate.of(2024, 10, 1))
-                        .build(),
-                CowshedReportEntity.builder()
-                        .cowshedReportId(2L)
-                        .dateOfReport(LocalDate.of(2024, 10, 1))
-                        .build()
+                createCowshedReportEntity(1L, LocalDate.of(2024, 10, 1)),
+                createCowshedReportEntity(2L, LocalDate.of(2024, 10, 1))
         );
 
         //when
@@ -62,26 +56,21 @@ class WeeklyReportServiceTest {
         Assertions.assertEquals(2, filteredReports.get(0).getCowshedReportId());
     }
 
+    private static CowshedReportEntity createCowshedReportEntity(Long cowshedReportId, LocalDate dateOfReport) {
+        return CowshedReportEntity.builder()
+                .cowshedReportId(cowshedReportId)
+                .dateOfReport(dateOfReport)
+                .build();
+    }
+
     @Test
     void shouldReturnTwoReports() {
         //given
         List<CowshedReportEntity> allReports = List.of(
-                CowshedReportEntity.builder()
-                        .cowshedReportId(1L)
-                        .dateOfReport(LocalDate.of(2024, 10, 1))
-                        .build(),
-                CowshedReportEntity.builder()
-                        .cowshedReportId(2L)
-                        .dateOfReport(LocalDate.of(2024, 10, 1))
-                        .build(),
-                CowshedReportEntity.builder()
-                        .cowshedReportId(3L)
-                        .dateOfReport(LocalDate.of(2024, 10, 1))
-                        .build(),
-                CowshedReportEntity.builder()
-                        .cowshedReportId(4L)
-                        .dateOfReport(LocalDate.of(2024, 10, 2))
-                        .build()
+                createCowshedReportEntity(1L, LocalDate.of(2024, 10, 1)),
+                createCowshedReportEntity(2L, LocalDate.of(2024, 10, 1)),
+                createCowshedReportEntity(3L, LocalDate.of(2024, 10, 1)),
+                createCowshedReportEntity(4L,LocalDate.of(2024, 10, 2))
         );
 
         //when
