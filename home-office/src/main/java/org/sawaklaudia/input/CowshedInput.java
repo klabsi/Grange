@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 public class CowshedInput {
 
-    private double litersOfMilkPerWeek;
-    private int numberOfWorkersPerWeek;
+    private double litersOfMilk;
+    private int numberOfWorkers;
     private LocalDate dateOfReport;
 }

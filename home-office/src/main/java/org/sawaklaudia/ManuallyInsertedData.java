@@ -26,7 +26,7 @@ public class ManuallyInsertedData implements AppLaunchType {
 
         double kgOfCheesePerMonth = cheeseFactoryInputProcessor.calculateKgOfCheesePerMonth(cheeseFactoryInputs.get(0),
                 cheeseFactoryInputs.get(1), cheeseFactoryInputs.get(2), cheeseFactoryInputs.get(3));
-        double literOfMilkPerMonth = cowshedInputProcessor.calculateLitersOfMilkPerMonth(cowshedInputs.get(0),
+        double literOfMilkPerMonth = cowshedInputProcessor.calcTotalLitersOfMilkPerMonth(cowshedInputs.get(0),
                 cowshedInputs.get(1), cowshedInputs.get(2), cowshedInputs.get(3));
         int numberOfEggsPerMonth = henhouseInputProcessor.calculateNumOfEggsPerMonth(henhouseInputs.get(0),
                 henhouseInputs.get(1), henhouseInputs.get(2), henhouseInputs.get(3));
@@ -38,12 +38,12 @@ public class ManuallyInsertedData implements AppLaunchType {
         System.out.println(monthlyReport.toString());
 
         double kgOfCheesePerPerson = cheeseFactoryInputProcessor.processKgOfCheesePerPerson(cheeseFactoryInputs.get(0));
-        double literOfMilkPerPerson = cowshedInputProcessor.processLiterOfMilkPerPerson(cowshedInputs.get(0));
+       // double literOfMilkPerPerson = cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek(cowshedInputs.get(0));
         double numberOfEggsPerPerson = henhouseInputProcessor.processNumOfEggsPerPerson(henhouseInputs.get(0));
         double numberOfPersonPerFox = guardhouseInputProcessor.processNumberOfPersonPerFox(guardhouseInputs.get(0));
         var weeklyReportFactory = new WeeklyReportFactory();
-        var weekOneReport = weeklyReportFactory.process(numberOfEggsPerPerson, literOfMilkPerPerson, numberOfPersonPerFox, kgOfCheesePerPerson);
-        System.out.println(weekOneReport.toString());
+       // var weekOneReport = weeklyReportFactory.process(numberOfEggsPerPerson, literOfMilkPerPerson, numberOfPersonPerFox, kgOfCheesePerPerson);
+       // System.out.println(weekOneReport.toString());
     }
 
     public static List<CheeseFactoryInput> generateCheeseFactoryData() {
@@ -104,8 +104,8 @@ public class ManuallyInsertedData implements AppLaunchType {
 
     private static CowshedInput createCowshedInput(double litersOfMilkPerWeek, int dayOfMonth) {
         return CowshedInput.builder()
-                .litersOfMilkPerWeek(litersOfMilkPerWeek)
-                .numberOfWorkersPerWeek(8)
+                .litersOfMilk(litersOfMilkPerWeek)
+                .numberOfWorkers(8)
                 .dateOfReport(LocalDate.of(2024, 6, dayOfMonth))
                 .build();
     }

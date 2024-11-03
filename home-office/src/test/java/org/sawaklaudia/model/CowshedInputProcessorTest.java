@@ -8,6 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.sawaklaudia.input.CowshedInput;
 
+import java.util.List;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CowshedInputProcessorTest {
 
@@ -16,35 +18,38 @@ class CowshedInputProcessorTest {
     private CowshedInput cowshedInput2;
     private CowshedInput cowshedInput3;
     private CowshedInput cowshedInput4;
+    private List<CowshedInput> cowshedInputsFromAWeek;
 
     @BeforeAll
     void setUp() {
         cowshedInputProcessor = new CowshedInputProcessor();
         cowshedInput1 = CowshedInput.builder()
-                .litersOfMilkPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .litersOfMilk(1)
+                .numberOfWorkers(1)
                 .build();
 
         cowshedInput2 = CowshedInput.builder()
-                .litersOfMilkPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .litersOfMilk(1)
+                .numberOfWorkers(1)
                 .build();
 
         cowshedInput3 = CowshedInput.builder()
-                .litersOfMilkPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .litersOfMilk(1)
+                .numberOfWorkers(1)
                 .build();
 
         cowshedInput4 = CowshedInput.builder()
-                .litersOfMilkPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .litersOfMilk(1)
+                .numberOfWorkers(1)
                 .build();
+
+        cowshedInputsFromAWeek = List.of(cowshedInput1, cowshedInput2, cowshedInput3, cowshedInput4);
     }
 
     @Test
     void shouldReturnFourWhenSetOneLiterOfMilkEveryWeek() {
         //given when
-        double actual = cowshedInputProcessor.calculateLitersOfMilkPerMonth(cowshedInput1, cowshedInput2,
+        double actual = cowshedInputProcessor.calcTotalLitersOfMilkPerMonth(cowshedInput1, cowshedInput2,
                 cowshedInput3, cowshedInput4);
 
         //then
@@ -55,14 +60,14 @@ class CowshedInputProcessorTest {
     @NullSource
     void shouldThrowsExceptionWhenProcessNullInput(CowshedInput cowshedInput1) {
         //given when then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> cowshedInputProcessor.calculateLitersOfMilkPerMonth(cowshedInput1,
+        Assertions.assertThrows(IllegalArgumentException.class, () -> cowshedInputProcessor.calcTotalLitersOfMilkPerMonth(cowshedInput1,
                 cowshedInput2, cowshedInput3, cowshedInput4));
     }
 
     @Test
     void shouldReturnOneWhenCalculateLitersOfMilkPerPerson() {
         //given when
-        double actual = cowshedInputProcessor.processLiterOfMilkPerPerson(cowshedInput1);
+        double actual = cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek(cowshedInputsFromAWeek);
 
         //then
         Assertions.assertEquals(1.0, actual);
@@ -70,8 +75,8 @@ class CowshedInputProcessorTest {
 
     @ParameterizedTest
     @NullSource
-    void shouldThrowsExceptionWhenProcessNullAsInput(CowshedInput cowshedInput1) {
+    void shouldThrowsExceptionWhenProcessNullAsInput(List<CowshedInput> cowshedInputsFromAWeek) {
         //given when then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> cowshedInputProcessor.processLiterOfMilkPerPerson(cowshedInput1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek(cowshedInputsFromAWeek));
     }
 }
