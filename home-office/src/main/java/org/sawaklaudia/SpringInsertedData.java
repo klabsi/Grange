@@ -24,13 +24,13 @@ public class SpringInsertedData implements AppLaunchType {
         System.out.println(weeklyCheeseReports);
 
         CheeseFactoryReportRepository cheeseFactoryReportRepository = context.getBean(CheeseFactoryReportRepository.class);
-        cheeseFactoryReportRepository.save(buildCheeseFacotryData(LocalDate.of(2024, 10, 1), 5, 28));
-        cheeseFactoryReportRepository.save(buildCheeseFacotryData(LocalDate.of(2024, 10, 2), 4, 42));
-        cheeseFactoryReportRepository.save(buildCheeseFacotryData(LocalDate.of(2024, 10, 3), 6, 58));
-        cheeseFactoryReportRepository.save(buildCheeseFacotryData(LocalDate.of(2024, 10, 4), 5, 52));
-        cheeseFactoryReportRepository.save(buildCheeseFacotryData(LocalDate.of(2024, 10, 5), 5, 41));
-        cheeseFactoryReportRepository.save(buildCheeseFacotryData(LocalDate.of(2024, 10, 6), 6, 62));
-        cheeseFactoryReportRepository.save(buildCheeseFacotryData(LocalDate.of(2024, 10, 7), 5, 52));
+        cheeseFactoryReportRepository.save(buildCheeseFactoryData(LocalDate.of(2024, 10, 1), 5, 28));
+        cheeseFactoryReportRepository.save(buildCheeseFactoryData(LocalDate.of(2024, 10, 2), 4, 42));
+        cheeseFactoryReportRepository.save(buildCheeseFactoryData(LocalDate.of(2024, 10, 3), 6, 58));
+        cheeseFactoryReportRepository.save(buildCheeseFactoryData(LocalDate.of(2024, 10, 4), 5, 52));
+        cheeseFactoryReportRepository.save(buildCheeseFactoryData(LocalDate.of(2024, 10, 5), 5, 41));
+        cheeseFactoryReportRepository.save(buildCheeseFactoryData(LocalDate.of(2024, 10, 6), 6, 62));
+        cheeseFactoryReportRepository.save(buildCheeseFactoryData(LocalDate.of(2024, 10, 7), 5, 52));
         System.out.println("Cheese Factory report:");
         System.out.println(cheeseFactoryReportRepository.findAll());
 
@@ -47,14 +47,15 @@ public class SpringInsertedData implements AppLaunchType {
 
         WeeklyReportRepository weeklyReportRepository = context.getBean(WeeklyReportRepository.class);
         WeeklyReportService weeklyReportService = context.getBean(WeeklyReportService.class);
-        LocalDate dateOdReport = LocalDate.of(2024, 10, 8);
-        double avrCowshedWorkersProductivity = weeklyReportService.calculateWeeklyCowshedData(dateOdReport);
-        weeklyReportService.saveWeeklyReport(dateOdReport, avrCowshedWorkersProductivity);
+        LocalDate dateOfReport = LocalDate.of(2024, 10, 8);
+        double avrCowshedWorkersProductivity = weeklyReportService.calculateWeeklyCowshedData(dateOfReport);
+        double avrCheeseFactoryWorkersProductivity = weeklyReportService.calculateWeeklyCheeseFactoryData(dateOfReport);
+        weeklyReportService.saveWeeklyReport(dateOfReport, avrCowshedWorkersProductivity, avrCheeseFactoryWorkersProductivity);
         System.out.println("Weekly report:");
         System.out.println(weeklyReportRepository.findAll());
     }
 
-    private CheeseFactoryReportEntity buildCheeseFacotryData(LocalDate dateOfReport, int numberOfWorkers, double kgOfCheese) {
+    private CheeseFactoryReportEntity buildCheeseFactoryData(LocalDate dateOfReport, int numberOfWorkers, double kgOfCheese) {
         return CheeseFactoryReportEntity.builder()
                 .dateOfReport(dateOfReport)
                 .numberOfWorkers(numberOfWorkers)

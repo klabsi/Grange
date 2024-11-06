@@ -1,8 +1,11 @@
 package org.sawaklaudia.model;
 
 import org.sawaklaudia.input.CheeseFactoryInput;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+@Component
 public class CheeseFactoryInputProcessor {
 
     public double calculateKgOfCheesePerMonth(CheeseFactoryInput cheeseFactoryInput1, CheeseFactoryInput cheeseFactoryInput2, CheeseFactoryInput cheeseFactoryInput3,
