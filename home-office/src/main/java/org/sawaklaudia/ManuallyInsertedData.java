@@ -37,7 +37,7 @@ public class ManuallyInsertedData implements AppLaunchType {
         var monthlyReport = monthlyReportFactory.process(numberOfEggsPerMonth, literOfMilkPerMonth, numberOfFoxAttacksPerMonth, kgOfCheesePerMonth);
         System.out.println(monthlyReport.toString());
 
-        double kgOfCheesePerPerson = cheeseFactoryInputProcessor.processKgOfCheesePerPerson(cheeseFactoryInputs.get(0));
+        //double kgOfCheesePerPerson = cheeseFactoryInputProcessor.processKgOfCheesePerPerson(cheeseFactoryInputs.get(0));
        // double literOfMilkPerPerson = cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek(cowshedInputs.get(0));
         double numberOfEggsPerPerson = henhouseInputProcessor.processNumOfEggsPerPerson(henhouseInputs.get(0));
         double numberOfPersonPerFox = guardhouseInputProcessor.processNumberOfPersonPerFox(guardhouseInputs.get(0));
@@ -56,8 +56,8 @@ public class ManuallyInsertedData implements AppLaunchType {
 
     private static CheeseFactoryInput createCheeseFactoryInput(double kgOfCheesePerWeek, int dayOfMonth) {
         return CheeseFactoryInput.builder()
-                .kgOfCheesePerWeek(kgOfCheesePerWeek)
-                .numberOfWorkersPerWeek(2)
+                .kgOfCheese(kgOfCheesePerWeek)
+                .numberOfWorkers(2)
                 .dateOfReport(LocalDate.of(2024, 6, dayOfMonth))
                 .build();
     }

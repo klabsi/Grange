@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 public class CheeseFactoryInput {
 
-    private double kgOfCheesePerWeek;
-    private int numberOfWorkersPerWeek;
+    private double kgOfCheese;
+    private int numberOfWorkers;
     private LocalDate dateOfReport;
 }
