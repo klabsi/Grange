@@ -1,4 +1,5 @@
 CREATE SEQUENCE IF NOT EXISTS cowshed_seq;
+CREATE SEQUENCE IF NOT EXISTS cheese_factory_seq;
 CREATE SEQUENCE IF NOT EXISTS weekly_report_seq;
 
 CREATE TABLE henhouse_report (

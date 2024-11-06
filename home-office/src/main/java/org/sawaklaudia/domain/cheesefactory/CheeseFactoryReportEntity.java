@@ -16,7 +16,8 @@ public class CheeseFactoryReportEntity {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cheese_factory_seq")
+    @SequenceGenerator(name = "cheese_factory_seq", sequenceName = "cheese_factory_seq", allocationSize = 1)
     private Long cheeseFactoryReportId;
 
     @Column(name = "date_of_report")
