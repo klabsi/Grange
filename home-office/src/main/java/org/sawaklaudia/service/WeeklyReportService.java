@@ -1,10 +1,12 @@
 package org.sawaklaudia.service;
 
 import org.sawaklaudia.domain.WeeklyReportEntity;
+import org.sawaklaudia.domain.cheesefactory.CheeseFactoryReportEntity;
 import org.sawaklaudia.domain.cowshed.CowshedReportEntity;
 import org.sawaklaudia.input.CowshedInput;
 import org.sawaklaudia.model.CowshedInputProcessor;
 import org.sawaklaudia.repositories.WeeklyReportRepository;
+import org.sawaklaudia.repositories.cheesefactory.CheeseFactoryReportRepository;
 import org.sawaklaudia.repositories.cowshed.CowshedReportRepository;
 import org.sawaklaudia.repositories.cowshed.CowshedWeeklyReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +21,19 @@ public class WeeklyReportService {
 
     private CowshedReportRepository cowshedReportRepository;
     private CowshedInputProcessor cowshedInputProcessor;
+    private CheeseFactoryReportRepository cheeseFactoryReportRepository;
     private WeeklyReportRepository weeklyReportRepository;
     private CowshedWeeklyReportRepository cowshedWeeklyReportRepository;
 
     @Autowired
     public WeeklyReportService(CowshedReportRepository cowshedReportRepository,
                                CowshedInputProcessor cowshedInputProcessor,
+                               CheeseFactoryReportRepository cheeseFactoryReportRepository,
                                WeeklyReportRepository weeklyReportRepository,
                                CowshedWeeklyReportRepository cowshedWeeklyReportRepository) {
         this.cowshedReportRepository = cowshedReportRepository;
         this.cowshedInputProcessor = cowshedInputProcessor;
+        this.cheeseFactoryReportRepository = cheeseFactoryReportRepository;
         this.weeklyReportRepository = weeklyReportRepository;
         this.cowshedWeeklyReportRepository = cowshedWeeklyReportRepository;
     }
@@ -69,6 +74,36 @@ public class WeeklyReportService {
                 .map(CowshedService::convertToCowshedInput)
                 .toList();
         return cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek(cowshedInputs);
+    }
+
+    public List<CheeseFactoryReportEntity> getCheeseFactoryDataFromAWeek(LocalDate dateOfReport) {
+        LocalDate startDate = dateOfReport.minusDays(7);
+        LocalDate endDate = dateOfReport.minusDays(1);
+        List<CheeseFactoryReportEntity> allReportsOfAWeek = cheeseFactoryReportRepository.findAllReportsOfAWeek(startDate, endDate);
+        return filterDuplicatedCheeseFactoryDataFromAWeek(allReportsOfAWeek);
+    }
+
+    private List<CheeseFactoryReportEntity> filterDuplicatedCheeseFactoryDataFromAWeek(List<CheeseFactoryReportEntity> allReportsOfAWeek) {
+        List<CheeseFactoryReportEntity> filteredReports = new ArrayList<>();
+        Map<LocalDate, CheeseFactoryReportEntity> existingReports = new HashMap<>();
+
+        for(CheeseFactoryReportEntity entity : allReportsOfAWeek) {
+            LocalDate reportDate = entity.getDateOfReport();
+            if(existingReports.containsKey(reportDate)) {
+                CheeseFactoryReportEntity latestReport = existingReports.get(reportDate);
+                long entityId = entity.getCheeseFactoryReportId();
+                long latestReportId = latestReport.getCheeseFactoryReportId();
+                if(entityId > latestReportId) {
+                    filteredReports.remove(latestReport);
+                    filteredReports.add(entity);
+                    existingReports.put(reportDate, entity);
+                }
+            } else {
+                existingReports.put(reportDate, entity);
+                filteredReports.add(entity);
+            }
+        }
+        return filteredReports;
     }
 
     @Transactional
