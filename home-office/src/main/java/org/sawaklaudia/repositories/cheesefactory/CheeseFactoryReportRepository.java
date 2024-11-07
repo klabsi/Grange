@@ -13,6 +13,5 @@ import java.util.List;
 public interface CheeseFactoryReportRepository extends JpaRepository<CheeseFactoryReportEntity, Long> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM cheese_factory_report WHERE date_of_report BETWEEN :startDate AND :endDate")
-    public List<CheeseFactoryReportEntity> findAllReportsOfAWeek(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
-
+    List<CheeseFactoryReportEntity> findAllReportsOfAWeek(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 }
