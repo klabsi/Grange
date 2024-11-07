@@ -8,8 +8,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.sawaklaudia.domain.WeeklyReportEntity;
 import org.sawaklaudia.domain.cowshed.CowshedReportEntity;
+import org.sawaklaudia.model.CheeseFactoryInputProcessor;
 import org.sawaklaudia.model.CowshedInputProcessor;
 import org.sawaklaudia.repositories.WeeklyReportRepository;
+import org.sawaklaudia.repositories.cheesefactory.CheeseFactoryReportRepository;
+import org.sawaklaudia.repositories.cheesefactory.CheeseFactoryWeeklyReportRepository;
 import org.sawaklaudia.repositories.cowshed.CowshedReportRepository;
 import org.sawaklaudia.repositories.cowshed.CowshedWeeklyReportRepository;
 
@@ -28,16 +31,23 @@ class WeeklyReportServiceTest {
     @Mock
     private CowshedInputProcessor cowshedInputProcessor;
     @Mock
+    private CheeseFactoryReportRepository cheeseFactoryReportRepository;
+    @Mock
+    private CheeseFactoryInputProcessor cheeseFactoryInputProcessor;
+    @Mock
     private WeeklyReportRepository weeklyReportRepository;
     @Mock
     private CowshedWeeklyReportRepository cowshedWeeklyReportRepository;
+    @Mock
+    private CheeseFactoryWeeklyReportRepository cheeseFactoryWeeklyReportRepository;
     private WeeklyReportService weeklyReportService;
 
     @BeforeAll
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         weeklyReportService = new WeeklyReportService(cowshedReportRepository, cowshedInputProcessor,
-                weeklyReportRepository, cowshedWeeklyReportRepository);
+                cheeseFactoryReportRepository, cheeseFactoryInputProcessor, weeklyReportRepository,
+                cowshedWeeklyReportRepository, cheeseFactoryWeeklyReportRepository);
     }
 
     @Test
@@ -86,12 +96,13 @@ class WeeklyReportServiceTest {
         //given
         LocalDate reportDate = LocalDate.of(2024, 10, 1);
         double litersOfMilkPerWorker = 1;
+        double kgOfCheesePerWorker = 1;
         WeeklyReportEntity savedWeeklyReport = new WeeklyReportEntity();
 
         when(weeklyReportRepository.save(any())).thenReturn(savedWeeklyReport);
 
         //when
-        weeklyReportService.saveWeeklyReport(reportDate, litersOfMilkPerWorker);
+        weeklyReportService.saveOrUpdateWeeklyReport(reportDate, litersOfMilkPerWorker, kgOfCheesePerWorker);
 
         //then
         verify(weeklyReportRepository).save(any());

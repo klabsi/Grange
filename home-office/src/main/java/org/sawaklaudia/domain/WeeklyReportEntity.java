@@ -30,16 +30,16 @@ public class WeeklyReportEntity {
     private LocalDate dateOfReport;
 
     @Column(name = "number_of_eggs_per_person")
-    private double numberOfEggsPerPerson;
+    private double numberOfEggsPerWorker;
 
     @Column(name = "liters_of_milk_per_person")
-    private double litersOfMilkPerPerson;
+    private double litersOfMilkPerWorker;
 
     @Column(name = "number_of_workers_per_fox")
     private double numberOfWorkersPerFox;
 
     @Column(name = "kg_of_cheese_per_person")
-    private double kgOfCheesePerPerson;
+    private double kgOfCheesePerWorker;
 
     @OneToOne(mappedBy = "weeklyReport")
     private WeeklyMonthlyReportEntity weeklyMonthlyReport;
@@ -65,10 +65,10 @@ public class WeeklyReportEntity {
         return "WeeklyReportEntity{" +
                 "weeklyReportId=" + weeklyReportId +
                 ", dateOfReport=" + dateOfReport +
-                ", numberOfEggsPerPerson=" + numberOfEggsPerPerson +
-                ", litersOfMilkPerPerson=" + litersOfMilkPerPerson +
+                ", numberOfEggsPerWorker=" + numberOfEggsPerWorker +
+                ", litersOfMilkPerWorker=" + litersOfMilkPerWorker +
                 ", numberOfWorkersPerFox=" + numberOfWorkersPerFox +
-                ", kgOfCheesePerPerson=" + kgOfCheesePerPerson +
+                ", kgOfCheesePerWorker=" + kgOfCheesePerWorker +
                 '}';
     }
 }

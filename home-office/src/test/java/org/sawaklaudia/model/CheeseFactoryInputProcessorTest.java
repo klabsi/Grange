@@ -8,6 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.sawaklaudia.input.CheeseFactoryInput;
 
+import java.util.List;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CheeseFactoryInputProcessorTest {
 
@@ -16,26 +18,28 @@ class CheeseFactoryInputProcessorTest {
     private CheeseFactoryInput cheeseFactoryInput2;
     private CheeseFactoryInput cheeseFactoryInput3;
     private CheeseFactoryInput cheeseFactoryInput4;
-
+    private List<CheeseFactoryInput> cheeseFactoryInputsFromAWeek;
     @BeforeAll
     void setUp() {
         cheeseFactoryInputProcessor = new CheeseFactoryInputProcessor();
         cheeseFactoryInput1 = CheeseFactoryInput.builder()
-                .kgOfCheesePerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .kgOfCheese(1)
+                .numberOfWorkers(1)
                 .build();
         cheeseFactoryInput2 = CheeseFactoryInput.builder()
-                .kgOfCheesePerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .kgOfCheese(1)
+                .numberOfWorkers(1)
                 .build();
         cheeseFactoryInput3 = CheeseFactoryInput.builder()
-                .kgOfCheesePerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .kgOfCheese(1)
+                .numberOfWorkers(1)
                 .build();
         cheeseFactoryInput4 = CheeseFactoryInput.builder()
-                .kgOfCheesePerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .kgOfCheese(1)
+                .numberOfWorkers(1)
                 .build();
+
+        cheeseFactoryInputsFromAWeek = List.of(cheeseFactoryInput1, cheeseFactoryInput2, cheeseFactoryInput3, cheeseFactoryInput4);
     }
 
     @Test
@@ -58,15 +62,15 @@ class CheeseFactoryInputProcessorTest {
     @Test
     void shouldReturnOneWhenCalculateKgOfCheesePerPerson() {
         //given when
-        double actual = cheeseFactoryInputProcessor.processKgOfCheesePerPerson(cheeseFactoryInput1);
+        double actual = cheeseFactoryInputProcessor.processKgOfCheesePerWorkerPerWeek(cheeseFactoryInputsFromAWeek);
         //then
         Assertions.assertEquals(1.0, actual);
     }
 
     @ParameterizedTest
     @NullSource
-    void shouldThrownExceptionWhenCalculateKgOfCheesePerPersonWithNullInput(CheeseFactoryInput cheeseFactoryInput1) {
+    void shouldThrownExceptionWhenCalculateKgOfCheesePerPersonWithNullInput(List<CheeseFactoryInput> cheeseFactoryInputsFromAWeek) {
         //given when then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> cheeseFactoryInputProcessor.processKgOfCheesePerPerson(cheeseFactoryInput1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> cheeseFactoryInputProcessor.processKgOfCheesePerWorkerPerWeek(cheeseFactoryInputsFromAWeek));
     }
 }

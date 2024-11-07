@@ -13,5 +13,5 @@ import java.util.List;
 public interface CowshedReportRepository extends JpaRepository<CowshedReportEntity, Long> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM cowshed_report WHERE date_of_report BETWEEN :startDate AND :endDate")
-    public List<CowshedReportEntity> findAllReportsOfAWeek(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+    List<CowshedReportEntity> findAllReportsOfAWeek(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 }
