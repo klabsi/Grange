@@ -34,6 +34,7 @@ public class SpringInsertedData implements AppLaunchType {
         System.out.println("Cheese Factory report:");
         System.out.println(cheeseFactoryReportRepository.findAll());
 
+
         CowshedReportRepository cowshedReportRepository = context.getBean(CowshedReportRepository.class);
         cowshedReportRepository.save(buildCowshedData(LocalDate.of(2024, 10, 1), 5, 2255));
         cowshedReportRepository.save(buildCowshedData(LocalDate.of(2024, 10, 2), 4, 52));
