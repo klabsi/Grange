@@ -4,13 +4,13 @@ import org.sawaklaudia.output.WeeklyReport;
 
 public class WeeklyReportFactory {
 
-    public WeeklyReport process(double numberOfEggsPerPerson, double literOfMilkPerPerson, double numberOfPersonPerFox,
-                                double kgOfCheesePerPerson) {
+    public WeeklyReport process(double numberOfEggsPerWorker, double literOfMilkPerWorker, double numberOfWorkerPerFox,
+                                double kgOfCheesePerWorker) {
         return WeeklyReport.builder()
-                .numberOfEggsPerPerson(numberOfEggsPerPerson)
-                .literOfMilkPerPerson(literOfMilkPerPerson)
-                .numberOfPersonPerFox(numberOfPersonPerFox)
-                .kgOfCheesePerPerson(kgOfCheesePerPerson)
+                .numberOfEggsPerWorker(numberOfEggsPerWorker)
+                .literOfMilkPerWorker(literOfMilkPerWorker)
+                .numberOfWorkerPerFox(numberOfWorkerPerFox)
+                .kgOfCheesePerWorker(kgOfCheesePerWorker)
                 .build();
     }
 }
