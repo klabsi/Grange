@@ -12,7 +12,7 @@ import java.util.List;
 public class ManuallyInsertedData implements AppLaunchType {
 
     @Override
-    public void runApp(){
+    public void runApp() {
         System.out.println("### biuro domowe ###");
         List<CheeseFactoryInput> cheeseFactoryInputs = generateCheeseFactoryData();
         List<CowshedInput> cowshedInputs = generateCowshedData();
@@ -37,13 +37,13 @@ public class ManuallyInsertedData implements AppLaunchType {
         var monthlyReport = monthlyReportFactory.process(numberOfEggsPerMonth, literOfMilkPerMonth, numberOfFoxAttacksPerMonth, kgOfCheesePerMonth);
         System.out.println(monthlyReport.toString());
 
-        //double kgOfCheesePerPerson = cheeseFactoryInputProcessor.processKgOfCheesePerPerson(cheeseFactoryInputs.get(0));
-       // double literOfMilkPerPerson = cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek(cowshedInputs.get(0));
+        double kgOfCheesePerPerson = cheeseFactoryInputProcessor.processKgOfCheesePerWorkerPerWeek(cheeseFactoryInputs);
+        double literOfMilkPerPerson = cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek(cowshedInputs);
         double numberOfEggsPerPerson = henhouseInputProcessor.processNumOfEggsPerPerson(henhouseInputs.get(0));
         double numberOfPersonPerFox = guardhouseInputProcessor.processNumberOfPersonPerFox(guardhouseInputs.get(0));
         var weeklyReportFactory = new WeeklyReportFactory();
-       // var weekOneReport = weeklyReportFactory.process(numberOfEggsPerPerson, literOfMilkPerPerson, numberOfPersonPerFox, kgOfCheesePerPerson);
-       // System.out.println(weekOneReport.toString());
+        var weekOneReport = weeklyReportFactory.process(numberOfEggsPerPerson, literOfMilkPerPerson, numberOfPersonPerFox, kgOfCheesePerPerson);
+        System.out.println(weekOneReport.toString());
     }
 
     public static List<CheeseFactoryInput> generateCheeseFactoryData() {
@@ -65,7 +65,7 @@ public class ManuallyInsertedData implements AppLaunchType {
     public static List<HenhouseInput> generateHenhouseData() {
         var henhouseInput1 = createHenhouseInput(28, 7);
         var henhouseInput2 = createHenhouseInput(20, 17);
-        var henhouseInput3 = createHenhouseInput(30,  21);
+        var henhouseInput3 = createHenhouseInput(30, 21);
         var henhouseInput4 = createHenhouseInput(22, 28);
         return List.of(henhouseInput1, henhouseInput2, henhouseInput3, henhouseInput4);
     }
