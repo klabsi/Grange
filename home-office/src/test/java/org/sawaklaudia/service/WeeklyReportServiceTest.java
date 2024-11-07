@@ -102,7 +102,7 @@ class WeeklyReportServiceTest {
         when(weeklyReportRepository.save(any())).thenReturn(savedWeeklyReport);
 
         //when
-        weeklyReportService.saveWeeklyReport(reportDate, litersOfMilkPerWorker, kgOfCheesePerWorker);
+        weeklyReportService.saveOrUpdateWeeklyReport(reportDate, litersOfMilkPerWorker, kgOfCheesePerWorker);
 
         //then
         verify(weeklyReportRepository).save(any());

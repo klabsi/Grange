@@ -124,23 +124,31 @@ public class WeeklyReportService {
     }
 
     @Transactional
-    public void saveWeeklyReport(LocalDate dateOfReport, double litersOfMilkPerWorker, double kgOfCheesePerWorker) {
-        WeeklyReportEntity weeklyReportEntity = weeklyReportRepository
-                .save(convertToWeeklyReportEntity(dateOfReport, litersOfMilkPerWorker, kgOfCheesePerWorker));
-        var weeklyReportId = weeklyReportEntity.getWeeklyReportId();
+    public void saveOrUpdateWeeklyReport(LocalDate dateOfReport, double litersOfMilkPerWorker, double kgOfCheesePerWorker) {
+        WeeklyReportEntity existingWeeklyReport = weeklyReportRepository.findByDate(dateOfReport);
+        if(existingWeeklyReport != null) {
+            existingWeeklyReport.setLitersOfMilkPerWorker(litersOfMilkPerWorker);
+            existingWeeklyReport.setKgOfCheesePerWorker(kgOfCheesePerWorker);
+            weeklyReportRepository.save(existingWeeklyReport);
+        } else {
+            WeeklyReportEntity weeklyReport = weeklyReportRepository
+                    .save(convertToWeeklyReportEntity(dateOfReport, litersOfMilkPerWorker, kgOfCheesePerWorker));
 
-        var cowshedReportIds = getCowshedDataFromAWeek(dateOfReport).stream()
-                .map(CowshedReportEntity::getCowshedReportId)
-                .toList();
-        for (Long cowshedReportId : cowshedReportIds) {
-           cowshedWeeklyReportRepository.insert(cowshedReportId, weeklyReportId);
-        }
+            var weeklyReportId = weeklyReport.getWeeklyReportId();
 
-        var cheeseFactoryReportIds = getCheeseFactoryDataFromAWeek(dateOfReport).stream()
-                .map(CheeseFactoryReportEntity::getCheeseFactoryReportId)
-                .toList();
-        for (Long cheeseFactoryReportId : cheeseFactoryReportIds) {
-            cheeseFactoryWeeklyReportRepository.insert(cheeseFactoryReportId, weeklyReportId);
+            var cowshedReportIds = getCowshedDataFromAWeek(dateOfReport).stream()
+                    .map(CowshedReportEntity::getCowshedReportId)
+                    .toList();
+            for (Long cowshedReportId : cowshedReportIds) {
+                cowshedWeeklyReportRepository.insert(cowshedReportId, weeklyReportId);
+            }
+
+            var cheeseFactoryReportIds = getCheeseFactoryDataFromAWeek(dateOfReport).stream()
+                    .map(CheeseFactoryReportEntity::getCheeseFactoryReportId)
+                    .toList();
+            for (Long cheeseFactoryReportId : cheeseFactoryReportIds) {
+                cheeseFactoryWeeklyReportRepository.insert(cheeseFactoryReportId, weeklyReportId);
+            }
         }
     }
 

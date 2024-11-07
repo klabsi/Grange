@@ -38,7 +38,7 @@ public class SpringInsertedData implements AppLaunchType {
         cowshedReportRepository.save(buildCowshedData(LocalDate.of(2024, 10, 1), 5, 48));
         cowshedReportRepository.save(buildCowshedData(LocalDate.of(2024, 10, 2), 4, 52));
         cowshedReportRepository.save(buildCowshedData(LocalDate.of(2024, 10, 3), 6, 68));
-        cowshedReportRepository.save(buildCowshedData(LocalDate.of(2024, 10, 4), 5, 42));
+        cowshedReportRepository.save(buildCowshedData(LocalDate.of(2024, 10, 4), 5, 33));
         cowshedReportRepository.save(buildCowshedData(LocalDate.of(2024, 10, 5), 5, 51));
         cowshedReportRepository.save(buildCowshedData(LocalDate.of(2024, 10, 6), 6, 62));
         cowshedReportRepository.save(buildCowshedData(LocalDate.of(2024, 10, 7), 5, 42));
@@ -50,7 +50,7 @@ public class SpringInsertedData implements AppLaunchType {
         LocalDate dateOfReport = LocalDate.of(2024, 10, 8);
         double avrCowshedWorkersProductivity = weeklyReportService.calculateWeeklyCowshedData(dateOfReport);
         double avrCheeseFactoryWorkersProductivity = weeklyReportService.calculateWeeklyCheeseFactoryData(dateOfReport);
-        weeklyReportService.saveWeeklyReport(dateOfReport, avrCowshedWorkersProductivity, avrCheeseFactoryWorkersProductivity);
+        weeklyReportService.saveOrUpdateWeeklyReport(dateOfReport, avrCowshedWorkersProductivity, avrCheeseFactoryWorkersProductivity);
         System.out.println("Weekly report:");
         System.out.println(weeklyReportRepository.findAll());
     }
