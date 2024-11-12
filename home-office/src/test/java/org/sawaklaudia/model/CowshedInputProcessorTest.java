@@ -65,7 +65,7 @@ class CowshedInputProcessorTest {
     }
 
     @Test
-    void shouldReturnOneWhenCalculateLitersOfMilkPerPerson() {
+    void shouldReturnOneWhenCalculateLitersOfMilkPerWorker() {
         //given when
         double actual = cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek(cowshedInputsFromAWeek);
 

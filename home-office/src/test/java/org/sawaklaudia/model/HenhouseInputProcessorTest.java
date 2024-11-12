@@ -21,23 +21,23 @@ class HenhouseInputProcessorTest {
     void setUp() {
         henhouseInputProcessor = new HenhouseInputProcessor();
         henhouseInput1 = HenhouseInput.builder()
-                .numberOfEggsPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .numberOfEggs(1)
+                .numberOfWorkers(1)
                 .build();
 
         henhouseInput2 = HenhouseInput.builder()
-                .numberOfEggsPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .numberOfEggs(1)
+                .numberOfWorkers(1)
                 .build();
 
         henhouseInput3 = HenhouseInput.builder()
-                .numberOfEggsPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .numberOfEggs(1)
+                .numberOfWorkers(1)
                 .build();
 
         henhouseInput4 = HenhouseInput.builder()
-                .numberOfEggsPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .numberOfEggs(1)
+                .numberOfWorkers(1)
                 .build();
     }
 
@@ -60,9 +60,9 @@ class HenhouseInputProcessorTest {
     }
 
     @Test
-    void shouldReturnOneWhenProcessNumberOfEggsPerPerson() {
+    void shouldReturnOneWhenProcessNumberOfEggsPerWorker() {
         //given when
-        double actual = henhouseInputProcessor.processNumOfEggsPerPerson(henhouseInput1);
+        double actual = henhouseInputProcessor.processNumOfEggsPerWorker(henhouseInput1);
 
         //then
         Assertions.assertEquals(1.0, actual);
@@ -72,6 +72,6 @@ class HenhouseInputProcessorTest {
     @NullSource
     void shouldThrowsExceptionWhenProcessNullAsInput(HenhouseInput henhouseInput1) {
         //given when then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> henhouseInputProcessor.processNumOfEggsPerPerson(henhouseInput1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> henhouseInputProcessor.processNumOfEggsPerWorker(henhouseInput1));
     }
 }

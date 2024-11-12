@@ -9,14 +9,14 @@ public class GuardhouseInputProcessor {
             throw new IllegalArgumentException("Guardhouse input cannot be null.");
         }
 
-        return guardhouseInput1.getNumberOfFoxAttacksPerWeek() + guardhouseInput2.getNumberOfFoxAttacksPerWeek()
-                + guardhouseInput3.getNumberOfFoxAttacksPerWeek() + guardhouseInput4.getNumberOfFoxAttacksPerWeek();
+        return guardhouseInput1.getNumberOfFoxAttacks() + guardhouseInput2.getNumberOfFoxAttacks()
+                + guardhouseInput3.getNumberOfFoxAttacks() + guardhouseInput4.getNumberOfFoxAttacks();
     }
 
-    public double processNumberOfPersonPerFox(GuardhouseInput guardhouseInput) {
+    public double processNumberOfWorkersPerFox(GuardhouseInput guardhouseInput) {
         if (guardhouseInput == null) throw new IllegalArgumentException("Guardhouse input cannot be null.");
-        int numberOfFoxAttacksPerWeek = guardhouseInput.getNumberOfFoxAttacksPerWeek();
+        int numberOfFoxAttacksPerWeek = guardhouseInput.getNumberOfFoxAttacks();
         if (numberOfFoxAttacksPerWeek == 0) return 0.0;
-        return (double) guardhouseInput.getNumberOfWorkersPerWeek() / numberOfFoxAttacksPerWeek;
+        return (double) guardhouseInput.getNumberOfWorkers() / numberOfFoxAttacksPerWeek;
     }
 }

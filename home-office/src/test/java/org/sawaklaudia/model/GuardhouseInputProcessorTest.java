@@ -21,23 +21,23 @@ class GuardhouseInputProcessorTest {
     void setUp() {
         guardhouseInputProcessor = new GuardhouseInputProcessor();
         guardhouseInput1 = GuardhouseInput.builder()
-                .numberOfFoxAttacksPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .numberOfFoxAttacks(1)
+                .numberOfWorkers(1)
                 .build();
 
         guardhouseInput2 = GuardhouseInput.builder()
-                .numberOfFoxAttacksPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .numberOfFoxAttacks(1)
+                .numberOfWorkers(1)
                 .build();
 
         guardhouseInput3 = GuardhouseInput.builder()
-                .numberOfFoxAttacksPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .numberOfFoxAttacks(1)
+                .numberOfWorkers(1)
                 .build();
 
         guardhouseInput4 = GuardhouseInput.builder()
-                .numberOfFoxAttacksPerWeek(1)
-                .numberOfWorkersPerWeek(1)
+                .numberOfFoxAttacks(1)
+                .numberOfWorkers(1)
                 .build();
     }
 
@@ -60,9 +60,9 @@ class GuardhouseInputProcessorTest {
     }
 
     @Test
-    void shouldReturnOneWhenProcessNumberOfPersonPerFox() {
+    void shouldReturnOneWhenProcessNumberOfWorkerPerFox() {
         //given when
-        double actual = guardhouseInputProcessor.processNumberOfPersonPerFox(guardhouseInput1);
+        double actual = guardhouseInputProcessor.processNumberOfWorkersPerFox(guardhouseInput1);
 
         //then
         Assertions.assertEquals(1.0, actual);
@@ -72,11 +72,11 @@ class GuardhouseInputProcessorTest {
     void shouldReturnZeroWhenSetZeroFoxAttacks() {
         //given
         GuardhouseInput zeroInput = GuardhouseInput.builder()
-                .numberOfFoxAttacksPerWeek(0)
-                .numberOfWorkersPerWeek(1)
+                .numberOfFoxAttacks(0)
+                .numberOfWorkers(1)
                 .build();
         // when
-        double actual = guardhouseInputProcessor.processNumberOfPersonPerFox(zeroInput);
+        double actual = guardhouseInputProcessor.processNumberOfWorkersPerFox(zeroInput);
 
         //then
         Assertions.assertEquals(0.0, actual);
@@ -86,6 +86,6 @@ class GuardhouseInputProcessorTest {
     @NullSource
     void shouldThrowsExceptionWhenProcessNullAsInput(GuardhouseInput guardhouseInput1) {
         //given when then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> guardhouseInputProcessor.processNumberOfPersonPerFox(guardhouseInput1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> guardhouseInputProcessor.processNumberOfWorkersPerFox(guardhouseInput1));
     }
 }
