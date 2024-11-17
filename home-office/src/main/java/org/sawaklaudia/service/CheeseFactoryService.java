@@ -37,8 +37,8 @@ public class CheeseFactoryService {
                 .build();
     }
 
-    public void insertIntoCheeseFactoryWeeklyReportRepo(Long cheeseFactoryReportId, Long weeklyReportId) {
-        cheeseFactoryWeeklyReportRepository.insert(cheeseFactoryReportId, weeklyReportId);
+    public void insertIntoCheeseFactoryWeeklyReportRepo(List<Long> cheeseFactoryReportIds, Long weeklyReportId) {
+        cheeseFactoryWeeklyReportRepository.insertAll(cheeseFactoryReportIds, weeklyReportId);
     }
 
     public List<CheeseFactoryReportEntity> getCheeseFactoryDataFromAWeek(LocalDate dateOfReport) {

@@ -32,8 +32,8 @@ public class CowshedService {
         cowshedReportRepository.save(convertToCowshedReportEntity(cowshedInput));
     }
 
-    public void insertIntoCowshedWeeklyReportRepo(Long cowshedReportId, Long weeklyReportId){
-        cowshedWeeklyReportRepository.insert(cowshedReportId, weeklyReportId);
+    public void insertIntoCowshedWeeklyReportRepo(List<Long> cowshedReportIds, Long weeklyReportId){
+        cowshedWeeklyReportRepository.insertAll(cowshedReportIds, weeklyReportId);
     }
 
     private static CowshedReportEntity convertToCowshedReportEntity(CowshedInput cowshedInput) {
