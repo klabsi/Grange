@@ -60,7 +60,7 @@ class CheeseFactoryInputProcessorTest {
     }
 
     @Test
-    void shouldReturnOneWhenCalculateKgOfCheesePerPerson() {
+    void shouldReturnOneWhenCalculateKgOfCheesePerWorker() {
         //given when
         double actual = cheeseFactoryInputProcessor.processKgOfCheesePerWorkerPerWeek(cheeseFactoryInputsFromAWeek);
         //then
@@ -69,7 +69,7 @@ class CheeseFactoryInputProcessorTest {
 
     @ParameterizedTest
     @NullSource
-    void shouldThrownExceptionWhenCalculateKgOfCheesePerPersonWithNullInput(List<CheeseFactoryInput> cheeseFactoryInputsFromAWeek) {
+    void shouldThrownExceptionWhenCalculateKgOfCheesePerWorkerWithNullInput(List<CheeseFactoryInput> cheeseFactoryInputsFromAWeek) {
         //given when then
         Assertions.assertThrows(IllegalArgumentException.class, () -> cheeseFactoryInputProcessor.processKgOfCheesePerWorkerPerWeek(cheeseFactoryInputsFromAWeek));
     }

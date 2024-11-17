@@ -23,17 +23,17 @@ public class MonthlyReportEntity {
     @Column(name = "date_of_report")
     private LocalDate dateOfReport;
 
-    @Column(name = "number_of_eggs_per_person")
-    private double numberOfEggsPerPerson;
+    @Column(name = "number_of_eggs_per_worker")
+    private double numberOfEggsPerWorker;
 
-    @Column(name = "liters_of_milk_per_person")
-    private double litersOfMilkPerPerson;
+    @Column(name = "liters_of_milk_per_worker")
+    private double litersOfMilkPerWorker;
 
     @Column(name = "number_of_workers_per_fox")
     private double numberOfWorkersPerFox;
 
-    @Column(name = "kg_of_cheese_per_person")
-    private double kgOfCheesePerPerson;
+    @Column(name = "kg_of_cheese_per_worker")
+    private double kgOfCheesePerWorker;
 
     @Builder.Default
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "monthlyReport")
@@ -44,10 +44,10 @@ public class MonthlyReportEntity {
         return "MonthlyReportEntity{" +
                 "monthlyReportId=" + monthlyReportId +
                 ", dateOfReport=" + dateOfReport +
-                ", numberOfEggsPerPerson=" + numberOfEggsPerPerson +
-                ", litersOfMilkPerPerson=" + litersOfMilkPerPerson +
+                ", numberOfEggsPerWorker=" + numberOfEggsPerWorker +
+                ", litersOfMilkPerWorker=" + litersOfMilkPerWorker +
                 ", numberOfWorkersPerFox=" + numberOfWorkersPerFox +
-                ", kgOfCheesePerPerson=" + kgOfCheesePerPerson +
+                ", kgOfCheesePerWorker=" + kgOfCheesePerWorker +
                 '}';
     }
 }

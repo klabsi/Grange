@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 public class HenhouseInput {
 
-    private int numberOfEggsPerWeek;
-    private int numberOfWorkersPerWeek;
+    private int numberOfEggs;
+    private int numberOfWorkers;
     private LocalDate dateOfReport;
 }

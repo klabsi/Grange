@@ -9,12 +9,12 @@ public class HenhouseInputProcessor {
             throw new IllegalArgumentException("Henhouse input cannot be null.");
         }
 
-        return henhouseInput1.getNumberOfEggsPerWeek() + henhouseInput2.getNumberOfEggsPerWeek()
-                + henhouseInput3.getNumberOfEggsPerWeek() + henhouseInput4.getNumberOfEggsPerWeek();
+        return henhouseInput1.getNumberOfEggs() + henhouseInput2.getNumberOfEggs()
+                + henhouseInput3.getNumberOfEggs() + henhouseInput4.getNumberOfEggs();
     }
 
-    public double processNumOfEggsPerPerson(HenhouseInput henhouseInput) {
+    public double processNumOfEggsPerWorker(HenhouseInput henhouseInput) {
         if (henhouseInput == null) throw new IllegalArgumentException("Cheese factory input cannot be null.");
-        return (double) henhouseInput.getNumberOfEggsPerWeek() / henhouseInput.getNumberOfWorkersPerWeek();
+        return (double) henhouseInput.getNumberOfEggs() / henhouseInput.getNumberOfWorkers();
     }
 }

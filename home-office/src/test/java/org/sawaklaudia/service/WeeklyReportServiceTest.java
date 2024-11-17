@@ -8,13 +8,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.sawaklaudia.domain.WeeklyReportEntity;
 import org.sawaklaudia.domain.cowshed.CowshedReportEntity;
-import org.sawaklaudia.model.CheeseFactoryInputProcessor;
-import org.sawaklaudia.model.CowshedInputProcessor;
 import org.sawaklaudia.repositories.WeeklyReportRepository;
-import org.sawaklaudia.repositories.cheesefactory.CheeseFactoryReportRepository;
-import org.sawaklaudia.repositories.cheesefactory.CheeseFactoryWeeklyReportRepository;
-import org.sawaklaudia.repositories.cowshed.CowshedReportRepository;
-import org.sawaklaudia.repositories.cowshed.CowshedWeeklyReportRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -27,27 +21,18 @@ import static org.mockito.Mockito.when;
 class WeeklyReportServiceTest {
 
     @Mock
-    private CowshedReportRepository cowshedReportRepository;
-    @Mock
-    private CowshedInputProcessor cowshedInputProcessor;
-    @Mock
-    private CheeseFactoryReportRepository cheeseFactoryReportRepository;
-    @Mock
-    private CheeseFactoryInputProcessor cheeseFactoryInputProcessor;
-    @Mock
     private WeeklyReportRepository weeklyReportRepository;
     @Mock
-    private CowshedWeeklyReportRepository cowshedWeeklyReportRepository;
+    private CowshedService cowshedService;
     @Mock
-    private CheeseFactoryWeeklyReportRepository cheeseFactoryWeeklyReportRepository;
+    private CheeseFactoryService cheeseFactoryService;
     private WeeklyReportService weeklyReportService;
 
     @BeforeAll
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        weeklyReportService = new WeeklyReportService(cowshedReportRepository, cowshedInputProcessor,
-                cheeseFactoryReportRepository, cheeseFactoryInputProcessor, weeklyReportRepository,
-                cowshedWeeklyReportRepository, cheeseFactoryWeeklyReportRepository);
+        weeklyReportService = new WeeklyReportService(weeklyReportRepository,
+                cowshedService, cheeseFactoryService);
     }
 
     @Test
@@ -59,7 +44,7 @@ class WeeklyReportServiceTest {
         );
 
         //when
-        List<CowshedReportEntity> filteredReports = weeklyReportService.filterDuplicatedCowshedDataFromAWeek(allReports);
+        List<CowshedReportEntity> filteredReports = cowshedService.filterDuplicatedCowshedDataFromAWeek(allReports);
 
         //then
         Assertions.assertEquals(1, filteredReports.size());
@@ -80,11 +65,11 @@ class WeeklyReportServiceTest {
                 createCowshedReportEntity(1L, LocalDate.of(2024, 10, 1)),
                 createCowshedReportEntity(2L, LocalDate.of(2024, 10, 1)),
                 createCowshedReportEntity(3L, LocalDate.of(2024, 10, 1)),
-                createCowshedReportEntity(4L,LocalDate.of(2024, 10, 2))
+                createCowshedReportEntity(4L, LocalDate.of(2024, 10, 2))
         );
 
         //when
-        List<CowshedReportEntity> filteredReports = weeklyReportService.filterDuplicatedCowshedDataFromAWeek(allReports);
+        List<CowshedReportEntity> filteredReports = cowshedService.filterDuplicatedCowshedDataFromAWeek(allReports);
 
         //then
         Assertions.assertEquals(2, filteredReports.size());

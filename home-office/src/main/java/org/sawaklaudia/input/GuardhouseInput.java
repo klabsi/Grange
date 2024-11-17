@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 public class GuardhouseInput {
 
-    private int numberOfFoxAttacksPerWeek;
-    private int numberOfWorkersPerWeek;
+    private int numberOfFoxAttacks;
+    private int numberOfWorkers;
     private LocalDate dateOfReport;
 }

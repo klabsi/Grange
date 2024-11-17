@@ -37,12 +37,12 @@ public class ManuallyInsertedData implements AppLaunchType {
         var monthlyReport = monthlyReportFactory.process(numberOfEggsPerMonth, literOfMilkPerMonth, numberOfFoxAttacksPerMonth, kgOfCheesePerMonth);
         System.out.println(monthlyReport.toString());
 
-        double kgOfCheesePerPerson = cheeseFactoryInputProcessor.processKgOfCheesePerWorkerPerWeek(cheeseFactoryInputs);
-        double literOfMilkPerPerson = cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek(cowshedInputs);
-        double numberOfEggsPerPerson = henhouseInputProcessor.processNumOfEggsPerPerson(henhouseInputs.get(0));
-        double numberOfPersonPerFox = guardhouseInputProcessor.processNumberOfPersonPerFox(guardhouseInputs.get(0));
+        double kgOfCheesePerWorker = cheeseFactoryInputProcessor.processKgOfCheesePerWorkerPerWeek(cheeseFactoryInputs);
+        double literOfMilkPerWorker = cowshedInputProcessor.calcLitersOfMilkPerWorkerPerWeek(cowshedInputs);
+        double numberOfEggsPerWorker = henhouseInputProcessor.processNumOfEggsPerWorker(henhouseInputs.get(0));
+        double numberOfWorkerPerFox = guardhouseInputProcessor.processNumberOfWorkersPerFox(guardhouseInputs.get(0));
         var weeklyReportFactory = new WeeklyReportFactory();
-        var weekOneReport = weeklyReportFactory.process(numberOfEggsPerPerson, literOfMilkPerPerson, numberOfPersonPerFox, kgOfCheesePerPerson);
+        var weekOneReport = weeklyReportFactory.process(numberOfEggsPerWorker, literOfMilkPerWorker, numberOfWorkerPerFox, kgOfCheesePerWorker);
         System.out.println(weekOneReport.toString());
     }
 
@@ -72,8 +72,8 @@ public class ManuallyInsertedData implements AppLaunchType {
 
     private static HenhouseInput createHenhouseInput(int numberOfEggsPerWeek, int dayOfMonth) {
         return HenhouseInput.builder()
-                .numberOfEggsPerWeek(numberOfEggsPerWeek)
-                .numberOfWorkersPerWeek(4)
+                .numberOfEggs(numberOfEggsPerWeek)
+                .numberOfWorkers(4)
                 .dateOfReport(LocalDate.of(2024, 6, dayOfMonth))
                 .build();
     }
@@ -88,8 +88,8 @@ public class ManuallyInsertedData implements AppLaunchType {
 
     private static GuardhouseInput createGuardhouseInput(int numberOfFoxAttacksPerWeek, int dayOfMonth) {
         return GuardhouseInput.builder()
-                .numberOfFoxAttacksPerWeek(numberOfFoxAttacksPerWeek)
-                .numberOfWorkersPerWeek(2)
+                .numberOfFoxAttacks(numberOfFoxAttacksPerWeek)
+                .numberOfWorkers(2)
                 .dateOfReport(LocalDate.of(2024, 6, dayOfMonth))
                 .build();
     }

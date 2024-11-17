@@ -9,8 +9,8 @@ import lombok.ToString;
 @ToString
 public class WeeklyReport {
 
-    private double numberOfEggsPerPerson;
-    private double literOfMilkPerPerson;
-    private double numberOfPersonPerFox;
-    private double kgOfCheesePerPerson;
+    private double numberOfEggsPerWorker;
+    private double literOfMilkPerWorker;
+    private double numberOfWorkerPerFox;
+    private double kgOfCheesePerWorker;
 }
