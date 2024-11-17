@@ -71,3 +71,15 @@ services:
     container_name: henhouse-database
     ports:
       - 5585:5432
+  henhouse-service:
+    build:
+      context: ../henhouse
+      dockerfile: ../infrastructure/henhouse/service/Dockerfile
+    environment:
+      db_username:
+      db_password:
+    container_name: henhouse-service
+    ports:
+      - 8083:8083
+    depends_on:
+      - henhouse-database
