@@ -33,9 +33,9 @@ public class SpringInsertedData implements AppLaunchType {
         CowshedService cowshedService = context.getBean(CowshedService.class);
         CheeseFactoryService cheeseFactoryService = context.getBean(CheeseFactoryService.class);
         LocalDate dateOfReport = LocalDate.of(2024, 10, 8);
-        double avrCowshedWorkersProductivity = cowshedService.calculateWeeklyCowshedData(dateOfReport);
-        double avrCheeseFactoryWorkersProductivity = cheeseFactoryService.calculateWeeklyCheeseFactoryData(dateOfReport);
-        weeklyReportService.saveOrUpdateWeeklyReport(dateOfReport, avrCowshedWorkersProductivity, avrCheeseFactoryWorkersProductivity);
+        double cowshedWeeklyData = cowshedService.calculateWeeklyCowshedData(dateOfReport);
+        double cheeseFactoryWeeklyData = cheeseFactoryService.calculateWeeklyCheeseFactoryData(dateOfReport);
+        weeklyReportService.saveOrUpdateWeeklyReport(dateOfReport, cowshedWeeklyData, cheeseFactoryWeeklyData);
         System.out.println("Weekly report:");
         System.out.println(weeklyReportRepository.findAll());
     }
