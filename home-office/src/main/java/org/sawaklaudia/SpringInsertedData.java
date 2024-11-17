@@ -7,6 +7,8 @@ import org.sawaklaudia.repositories.WeeklyReportRepository;
 import org.sawaklaudia.repositories.cheesefactory.CheeseFactoryReportRepository;
 import org.sawaklaudia.repositories.cheesefactory.CheeseFactoryWeeklyReportRepository;
 import org.sawaklaudia.repositories.cowshed.CowshedReportRepository;
+import org.sawaklaudia.service.CheeseFactoryService;
+import org.sawaklaudia.service.CowshedService;
 import org.sawaklaudia.service.WeeklyReportService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -47,9 +49,11 @@ public class SpringInsertedData implements AppLaunchType {
 
         WeeklyReportRepository weeklyReportRepository = context.getBean(WeeklyReportRepository.class);
         WeeklyReportService weeklyReportService = context.getBean(WeeklyReportService.class);
+        CowshedService cowshedService = context.getBean(CowshedService.class);
+        CheeseFactoryService cheeseFactoryService = context.getBean(CheeseFactoryService.class);
         LocalDate dateOfReport = LocalDate.of(2024, 10, 8);
-        double avrCowshedWorkersProductivity = weeklyReportService.calculateWeeklyCowshedData(dateOfReport);
-        double avrCheeseFactoryWorkersProductivity = weeklyReportService.calculateWeeklyCheeseFactoryData(dateOfReport);
+        double avrCowshedWorkersProductivity = cowshedService.calculateWeeklyCowshedData(dateOfReport);
+        double avrCheeseFactoryWorkersProductivity = cheeseFactoryService.calculateWeeklyCheeseFactoryData(dateOfReport);
         weeklyReportService.saveOrUpdateWeeklyReport(dateOfReport, avrCowshedWorkersProductivity, avrCheeseFactoryWorkersProductivity);
         System.out.println("Weekly report:");
         System.out.println(weeklyReportRepository.findAll());
