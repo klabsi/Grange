@@ -62,3 +62,12 @@ services:
       - 8082:8082
     depends_on:
       - cheese-factory-database
+  henhouse-database:
+    build:
+      context: ./henhouse/database
+    environment:
+      POSTGRES_PASSWORD:
+      POSTGRES_USER:
+    container_name: henhouse-database
+    ports:
+      - 5585:5432
