@@ -46,14 +46,18 @@ public class WeeklyReportService {
         var cowshedReportIds = cowshedService.getCowshedDataFromAWeek(dateOfReport).stream()
                 .map(CowshedReportEntity::getCowshedReportId)
                 .toList();
-        cowshedService.insertIntoCowshedWeeklyReportRepo(cowshedReportIds, weeklyReportId);
+        for (Long cowshedReportId : cowshedReportIds) {
+            cowshedService.insertIntoCowshedWeeklyReportRepo(cowshedReportId, weeklyReportId);
+        }
     }
 
     private void saveIntoCheeseFactoryWeeklyReportRepo(LocalDate dateOfReport, Long weeklyReportId) {
         var cheeseFactoryReportIds = cheeseFactoryService.getCheeseFactoryDataFromAWeek(dateOfReport).stream()
                 .map(CheeseFactoryReportEntity::getCheeseFactoryReportId)
                 .toList();
-        cheeseFactoryService.insertIntoCheeseFactoryWeeklyReportRepo(cheeseFactoryReportIds, weeklyReportId);
+        for (Long cheeseFactoryReportId : cheeseFactoryReportIds) {
+            cheeseFactoryService.insertIntoCheeseFactoryWeeklyReportRepo(cheeseFactoryReportId, weeklyReportId);
+        }
     }
 
     private WeeklyReportEntity convertToWeeklyReportEntity (LocalDate dateOfReport, double litersOfMilkPerWorker, double kgOfCheesePerWorker) {
