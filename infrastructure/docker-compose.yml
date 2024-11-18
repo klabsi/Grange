@@ -83,3 +83,13 @@ services:
       - 8083:8083
     depends_on:
       - henhouse-database
+  guardhouse-service:
+    build:
+      context: ../guardhouse
+      dockerfile: ../infrastructure/guardhouse/service/Dockerfile
+    environment:
+      db_username:
+      db_password:
+    container_name: guardhouse-service
+    ports:
+      - 8084:8084
