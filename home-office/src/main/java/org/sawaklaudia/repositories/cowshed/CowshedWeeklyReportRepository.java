@@ -14,6 +14,6 @@ public interface CowshedWeeklyReportRepository extends JpaRepository<CowshedWeek
 
     @Modifying
     @Query(nativeQuery = true,
-            value = "INSERT INTO cowshed_weekly_report VALUES (:cowshedReportIds, :weeklyReportId)")
-    void insertAll(@Param("cowshedReportIds") List<Long> cowshedReportIds, @Param("weeklyReportId") Long weeklyReportId);
+            value = "INSERT INTO cowshed_weekly_report VALUES (:cowshedReportId, :weeklyReportId)")
+    void insert(@Param("cowshedReportId") Long cowshedReportId, @Param("weeklyReportId") Long weeklyReportId);
 }
