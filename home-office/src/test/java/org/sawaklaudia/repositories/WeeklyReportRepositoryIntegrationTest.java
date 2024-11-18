@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
@@ -12,11 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
+@ActiveProfiles("test")
 public class WeeklyReportRepositoryIntegrationTest {
 
-    public static final Long ID_ONE = 1L;
-    public static final Long NOT_EXISTENT_ID = 0L;
-    public static final LocalDate EXISTENT_DATE = LocalDate.of(2024, 10, 8);
+    public static final Long EXISTENT_ID = 2L;
+    public static final Long NOT_EXISTENT_ID = 4L;
+    public static final LocalDate EXISTENT_DATE = LocalDate.of(2000, 1, 1);
 
     @Autowired
     private WeeklyReportRepository weeklyReportRepository;
@@ -27,16 +29,16 @@ public class WeeklyReportRepositoryIntegrationTest {
         var weeklyReports = weeklyReportRepository.findAll();
 
         // then
-        assertEquals(1, weeklyReports.size());
+        assertEquals(2, weeklyReports.size());
     }
 
     @Test
     public void shouldReturnOneWeeklyReport() {
         // given & when
-        var weeklyReport = weeklyReportRepository.findById(ID_ONE);
+        var weeklyReport = weeklyReportRepository.findById(EXISTENT_ID);
 
         // then
-        assertNotNull(weeklyReport.get());
+        assertNotNull(weeklyReport);
     }
 
     @Test
