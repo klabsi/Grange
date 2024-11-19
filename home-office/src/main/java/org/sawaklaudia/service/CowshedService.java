@@ -64,7 +64,7 @@ public class CowshedService {
         Map<LocalDate, CowshedReportEntity> existingReports = new HashMap<>();
 
         for(CowshedReportEntity entity : allReportsOfAWeek) {
-            LocalDate reportDate = entity.getDateOfReport();
+           LocalDate reportDate = entity.getDateOfReport();
             if(existingReports.containsKey(reportDate)) {
                 CowshedReportEntity latestReport = existingReports.get(reportDate);
                 long entityId = entity.getCowshedReportId();

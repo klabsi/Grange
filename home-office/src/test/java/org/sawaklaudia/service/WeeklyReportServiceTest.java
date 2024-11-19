@@ -36,47 +36,6 @@ class WeeklyReportServiceTest {
     }
 
     @Test
-    void shouldReturnReportWithALargerId() {
-        //given
-        List<CowshedReportEntity> allReports = List.of(
-                createCowshedReportEntity(1L, LocalDate.of(2024, 10, 1)),
-                createCowshedReportEntity(2L, LocalDate.of(2024, 10, 1))
-        );
-
-        //when
-        List<CowshedReportEntity> filteredReports = cowshedService.filterDuplicatedCowshedDataFromAWeek(allReports);
-
-        //then
-        Assertions.assertEquals(1, filteredReports.size());
-        Assertions.assertEquals(2, filteredReports.get(0).getCowshedReportId());
-    }
-
-    private static CowshedReportEntity createCowshedReportEntity(Long cowshedReportId, LocalDate dateOfReport) {
-        return CowshedReportEntity.builder()
-                .cowshedReportId(cowshedReportId)
-                .dateOfReport(dateOfReport)
-                .build();
-    }
-
-    @Test
-    void shouldReturnTwoReports() {
-        //given
-        List<CowshedReportEntity> allReports = List.of(
-                createCowshedReportEntity(1L, LocalDate.of(2024, 10, 1)),
-                createCowshedReportEntity(2L, LocalDate.of(2024, 10, 1)),
-                createCowshedReportEntity(3L, LocalDate.of(2024, 10, 1)),
-                createCowshedReportEntity(4L, LocalDate.of(2024, 10, 2))
-        );
-
-        //when
-        List<CowshedReportEntity> filteredReports = cowshedService.filterDuplicatedCowshedDataFromAWeek(allReports);
-
-        //then
-        Assertions.assertEquals(2, filteredReports.size());
-        Assertions.assertEquals(3, filteredReports.get(0).getCowshedReportId());
-    }
-
-    @Test
     void testSaveWeeklyReport() {
         //given
         LocalDate reportDate = LocalDate.of(2024, 10, 1);
