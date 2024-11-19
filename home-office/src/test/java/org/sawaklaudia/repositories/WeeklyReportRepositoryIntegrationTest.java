@@ -16,8 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @ActiveProfiles("test")
 public class WeeklyReportRepositoryIntegrationTest {
 
-    public static final Long EXISTENT_ID = 2L;
-    public static final Long NOT_EXISTENT_ID = 4L;
+    public static final Long EXISTENT_ID = 1L;
+    public static final Long NOT_EXISTENT_ID = 3L;
     public static final LocalDate EXISTENT_DATE = LocalDate.of(2000, 1, 1);
 
     @Autowired

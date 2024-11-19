@@ -30,13 +30,11 @@ public class WeeklyReportServiceIntegrationTest {
     @Test
     @Transactional
     public void shouldUpdateExistingWeeklyReport() {
-        // given
+        // given & when
         weeklyReportService.saveOrUpdateWeeklyReport(EXISTENT_DATE, 2, 2);
 
-        // when
-        var updatedWeeklyReport = weeklyReportRepository.findByDate(EXISTENT_DATE);
-
         // then
+        var updatedWeeklyReport = weeklyReportRepository.findByDate(EXISTENT_DATE);
         assertEquals(2, updatedWeeklyReport.getLitersOfMilkPerWorker());
     }
 
@@ -47,12 +45,12 @@ public class WeeklyReportServiceIntegrationTest {
         LocalDate reportDate = EXISTENT_DATE.plusYears(1);
         double litersOfMilkPerWorker = 1;
         double kgOfCheesePerWorker = 1;
-        weeklyReportService.saveOrUpdateWeeklyReport(reportDate, litersOfMilkPerWorker, kgOfCheesePerWorker);
 
         // when
-        WeeklyReportEntity savedReport = weeklyReportRepository.findByDate(reportDate);
+        weeklyReportService.saveOrUpdateWeeklyReport(reportDate, litersOfMilkPerWorker, kgOfCheesePerWorker);
 
         // then
+        WeeklyReportEntity savedReport = weeklyReportRepository.findByDate(reportDate);
         assertNotNull(savedReport);
         assertEquals(savedReport.getDateOfReport(), reportDate);
         assertEquals(savedReport.getLitersOfMilkPerWorker(), litersOfMilkPerWorker);
