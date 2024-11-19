@@ -3,6 +3,10 @@ on:
   pull_request:
     paths:
       - 'home-office/**'
+      - 'cowshed/**'
+      - 'henhouse/**'
+      - 'cheese-factory/**'
+      - 'guardhouse/**'
 jobs:
   home-office:
     name: "home-office build"
