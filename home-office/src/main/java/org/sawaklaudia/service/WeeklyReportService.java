@@ -67,4 +67,8 @@ public class WeeklyReportService {
                 .kgOfCheesePerWorker(kgOfCheesePerWorker)
                 .build();
     }
+
+    public WeeklyReportEntity getWeeklyReportByDate(LocalDate dateOfReport) {
+        return weeklyReportRepository.findByDate(dateOfReport);
+    }
 }

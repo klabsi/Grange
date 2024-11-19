@@ -3,7 +3,6 @@ package org.sawaklaudia.service;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.sawaklaudia.domain.WeeklyReportEntity;
-import org.sawaklaudia.repositories.WeeklyReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -24,18 +23,17 @@ public class WeeklyReportServiceIntegrationTest {
     @Autowired
     private WeeklyReportService weeklyReportService;
 
-    @Autowired
-    private WeeklyReportRepository weeklyReportRepository;
-
     @Test
     @Transactional
     public void shouldUpdateExistingWeeklyReport() {
         // given & when
-        weeklyReportService.saveOrUpdateWeeklyReport(EXISTENT_DATE, 2, 2);
+        double litersOfMilkPerWorker = 2;
+        double kgOfCheesePerWorker = 2;
+        weeklyReportService.saveOrUpdateWeeklyReport(EXISTENT_DATE, litersOfMilkPerWorker, kgOfCheesePerWorker);
 
         // then
-        var updatedWeeklyReport = weeklyReportRepository.findByDate(EXISTENT_DATE);
-        assertEquals(2, updatedWeeklyReport.getLitersOfMilkPerWorker());
+        var updatedWeeklyReport = weeklyReportService.getWeeklyReportByDate(EXISTENT_DATE);
+        assertEquals(litersOfMilkPerWorker, updatedWeeklyReport.getLitersOfMilkPerWorker());
     }
 
     @Test
@@ -50,7 +48,7 @@ public class WeeklyReportServiceIntegrationTest {
         weeklyReportService.saveOrUpdateWeeklyReport(reportDate, litersOfMilkPerWorker, kgOfCheesePerWorker);
 
         // then
-        WeeklyReportEntity savedReport = weeklyReportRepository.findByDate(reportDate);
+        WeeklyReportEntity savedReport = weeklyReportService.getWeeklyReportByDate(reportDate);
         assertNotNull(savedReport);
         assertEquals(savedReport.getDateOfReport(), reportDate);
         assertEquals(savedReport.getLitersOfMilkPerWorker(), litersOfMilkPerWorker);
