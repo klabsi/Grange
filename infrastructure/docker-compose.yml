@@ -17,7 +17,7 @@ services:
       db_password:
     container_name: home-office-service
     ports:
-      - 8080:8080
+      - 8085:8085
     depends_on:
       - home-office-database
   cowshed-database:
