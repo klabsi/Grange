@@ -93,3 +93,64 @@ services:
     container_name: guardhouse-service
     ports:
       - 8084:8084
+
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:latest
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - '2181:2181'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ALLOW_ANONYMOUS_LOGIN: yes
+
+  kafka:
+    image: docker.io/bitnami/kafka:latest
+    hostname: broker
+    container_name: broker
+    depends_on:
+      - zookeeper
+    ports:
+      - '9092:9092'
+      - '9101:9101'
+      - '29092:29092'
+    expose:
+      - '29092'
+    environment:
+      ALLOW_PLAINTEXT_LISTENER: 'yes'
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://broker:29092,EXTERNAL://localhost:9092
+      KAFKA_AUTO_CREATE_TOPIC_ENABLE: false
+      KAFKA_BROKER_ID: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_LISTENERS: INTERNAL://:29092,EXTERNAL://0.0.0.0:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  init-kafka:
+    image: docker.io/bitnami/kafka:latest
+    working_dir: /opt/bitnami/kafka/bin
+    depends_on:
+      - kafka
+    entrypoint: [ '/bin/sh', '-c' ]
+    command: |
+      "
+      # blocks until kafka is reachable
+      echo -e 'Start. Listing current topics. Still  can show warnings, ignore them for now.'
+
+      kafka-topics.sh --bootstrap-server broker:29092 --list
+
+      echo -e 'Creating kafka topics'
+      kafka-topics.sh --bootstrap-server broker:29092 --create --if-not-exists --topic events.guardhouse.homeoffice --replication-factor 1 --partitions 4
+      
+      echo -e 'Successfully created the following topics:'
+      kafka-topics.sh --bootstrap-server broker:29092 --describe
+      echo -e 'The end.'
+
+      "
