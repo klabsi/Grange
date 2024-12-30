@@ -147,7 +147,7 @@ services:
       kafka-topics.sh --bootstrap-server broker:29092 --list
 
       echo -e 'Creating kafka topics'
-      kafka-topics.sh --bootstrap-server broker:29092 --create --if-not-exists --topic events.guardhouse.homeoffice --replication-factor 1 --partitions 4
+      kafka-topics.sh --bootstrap-server broker:29092 --create --if-not-exists --topic Kasa1 --replication-factor 1 --partitions 4
       
       echo -e 'Successfully created the following topics:'
       kafka-topics.sh --bootstrap-server broker:29092 --describe
