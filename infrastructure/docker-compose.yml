@@ -3,8 +3,8 @@ services:
     build:
       context: ./home-office/database
     environment:
-      POSTGRES_PASSWORD:
-      POSTGRES_USER:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
     container_name: home-office-database
     ports:
       - 5555:5432
@@ -24,8 +24,8 @@ services:
     build:
       context: ./cowshed/database
     environment:
-      POSTGRES_PASSWORD:
-      POSTGRES_USER:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
     container_name: cowshed-database
     ports:
       - 5565:5432
@@ -34,8 +34,8 @@ services:
       context: ../cowshed
       dockerfile: ../infrastructure/cowshed/service/Dockerfile
     environment:
-      db_username:
-      db_password:
+      db_username: ${DB_USERNAME}
+      db_password: ${DB_PASSWORD}
     container_name: cowshed-service
     ports:
       - 8081:8081
@@ -45,8 +45,8 @@ services:
     build:
       context: ./cheese-factory/database
     environment:
-      POSTGRES_PASSWORD:
-      POSTGRES_USER:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
     container_name: cheese-factory-database
     ports:
       - 5575:5432
@@ -55,8 +55,8 @@ services:
       context: ../cheese-factory
       dockerfile: ../infrastructure/cheese-factory/service/Dockerfile
     environment:
-      db_username:
-      db_password:
+      db_username: ${DB_USERNAME}
+      db_password: ${DB_PASSWORD}
     container_name: cheese-factory-service
     ports:
       - 8082:8082
@@ -66,8 +66,8 @@ services:
     build:
       context: ./henhouse/database
     environment:
-      POSTGRES_PASSWORD:
-      POSTGRES_USER:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
     container_name: henhouse-database
     ports:
       - 5585:5432
@@ -76,8 +76,8 @@ services:
       context: ../henhouse
       dockerfile: ../infrastructure/henhouse/service/Dockerfile
     environment:
-      db_username:
-      db_password:
+      db_username: ${DB_USERNAME}
+      db_password: ${DB_PASSWORD}
     container_name: henhouse-service
     ports:
       - 8083:8083
@@ -88,8 +88,8 @@ services:
       context: ../guardhouse
       dockerfile: ../infrastructure/guardhouse/service/Dockerfile
     environment:
-      db_username:
-      db_password:
+      db_username: ${DB_USERNAME}
+      db_password: ${DB_PASSWORD}
     container_name: guardhouse-service
     ports:
       - 8084:8084
