@@ -1,4 +1,11 @@
 FROM eclipse-temurin:21
-ARG appJar=build/libs/cowshed-1.0-SNAPSHOT.jar
-ADD ${appJar} cowshed.jar
-ENTRYPOINT java -Dspring.datasource.username=${db_username} -Dspring.datasource.password=${db_password} -jar cowshed.jar
+
+COPY gradle/wrapper/* gradle/wrapper/
+COPY build.gradle .
+COPY gradlew .
+COPY settings.gradle .
+COPY cowshed cowshed
+
+RUN chmod +x ./gradlew && ./gradlew cowshed:bootJar --no-daemon
+
+ENTRYPOINT java -Dencryptor.password=${entrypoint_password} -jar henhouse/build/libs/cowshed-1.0-SNAPSHOT.jar

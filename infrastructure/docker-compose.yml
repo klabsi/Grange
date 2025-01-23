@@ -33,8 +33,7 @@ services:
       context: ../cowshed
       dockerfile: ../infrastructure/cowshed/service/Dockerfile
     environment:
-      db_username: ${DB_USERNAME}
-      db_password: ${DB_PASSWORD}
+      entrypoint_password: ${entrypoint_password}
     container_name: cowshed-service
     ports:
       - 8081:8081
