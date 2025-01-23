@@ -1,4 +1,11 @@
 FROM eclipse-temurin:21
-ARG appJar=build/libs/cheese-factory-1.0-SNAPSHOT.jar
-ADD ${appJar} cheese-factory.jar
-ENTRYPOINT java -Dspring.datasource.username=${db_username} -Dspring.datasource.password=${db_password} -jar cheese-factory.jar
+
+COPY gradle/wrapper/* gradle/wrapper/
+COPY build.gradle .
+COPY gradlew .
+COPY settings.gradle .
+COPY cheese-factory cheese-factory
+
+RUN chmod +x ./gradlew && ./gradlew cheese-factory:bootJar --no-daemon
+
+ENTRYPOINT java -Dencryptor.password=${entrypoint_password} -jar cheese-factory/build/libs/cheese-factory-1.0-SNAPSHOT.jar

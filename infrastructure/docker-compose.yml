@@ -54,8 +54,7 @@ services:
       context: ../cheese-factory
       dockerfile: ../infrastructure/cheese-factory/service/Dockerfile
     environment:
-      db_username: ${DB_USERNAME}
-      db_password: ${DB_PASSWORD}
+      entrypoint_password: ${entrypoint_password}
     container_name: cheese-factory-service
     ports:
       - 8082:8082
