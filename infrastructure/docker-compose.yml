@@ -13,8 +13,7 @@ services:
       context: ../home-office
       dockerfile: ../infrastructure/home-office/service/Dockerfile
     environment:
-      db_username: ${DB_USERNAME}
-      db_password: ${DB_PASSWORD}
+      entrypoint_password: ${entrypoint_password}
     container_name: home-office-service
     ports:
       - 8085:8085
