@@ -74,8 +74,7 @@ services:
       context: ../henhouse
       dockerfile: ../infrastructure/henhouse/service/Dockerfile
     environment:
-      db_username: ${DB_USERNAME}
-      db_password: ${DB_PASSWORD}
+      entrypoint_password: ${entrypoint_password}
     container_name: henhouse-service
     ports:
       - 8083:8083
