@@ -10,8 +10,8 @@ services:
       - 5555:5432
   home-office-service:
     build:
-      context: ../home-office
-      dockerfile: ../infrastructure/home-office/service/Dockerfile
+      context: ../
+      dockerfile: infrastructure/home-office/service/Dockerfile
     environment:
       entrypoint_password: ${entrypoint_password}
     container_name: home-office-service
@@ -30,8 +30,8 @@ services:
       - 5565:5432
   cowshed-service:
     build:
-      context: ../cowshed
-      dockerfile: ../infrastructure/cowshed/service/Dockerfile
+      context: ../
+      dockerfile: infrastructure/cowshed/service/Dockerfile
     environment:
       entrypoint_password: ${entrypoint_password}
     container_name: cowshed-service
@@ -50,8 +50,8 @@ services:
       - 5575:5432
   cheese-factory-service:
     build:
-      context: ../cheese-factory
-      dockerfile: ../infrastructure/cheese-factory/service/Dockerfile
+      context: ../
+      dockerfile: infrastructure/cheese-factory/service/Dockerfile
     environment:
       entrypoint_password: ${entrypoint_password}
     container_name: cheese-factory-service
@@ -70,8 +70,8 @@ services:
       - 5585:5432
   henhouse-service:
     build:
-      context: ../henhouse
-      dockerfile: ../infrastructure/henhouse/service/Dockerfile
+      context: ../
+      dockerfile: infrastructure/henhouse/service/Dockerfile
     environment:
       entrypoint_password: ${entrypoint_password}
     container_name: henhouse-service
@@ -81,8 +81,8 @@ services:
       - henhouse-database
   guardhouse-service:
     build:
-      context: ../guardhouse
-      dockerfile: ../infrastructure/guardhouse/service/Dockerfile
+      context: ../
+      dockerfile: infrastructure/guardhouse/service/Dockerfile
     environment:
       entrypoint_password: ${entrypoint_password}
     container_name: guardhouse-service
