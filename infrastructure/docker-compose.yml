@@ -13,7 +13,7 @@ services:
       context: ../
       dockerfile: infrastructure/home-office/service/Dockerfile
     environment:
-      entrypoint_password: ${entrypoint_password}
+      ENTRYPOINT_PASSWORD: ${ENTRYPOINT_PASSWORD}
     container_name: home-office-service
     ports:
       - 8085:8085
@@ -33,7 +33,7 @@ services:
       context: ../
       dockerfile: infrastructure/cowshed/service/Dockerfile
     environment:
-      entrypoint_password: ${entrypoint_password}
+      ENTRYPOINT_PASSWORD: ${ENTRYPOINT_PASSWORD}
     container_name: cowshed-service
     ports:
       - 8081:8081
@@ -53,7 +53,7 @@ services:
       context: ../
       dockerfile: infrastructure/cheese-factory/service/Dockerfile
     environment:
-      entrypoint_password: ${entrypoint_password}
+      ENTRYPOINT_PASSWORD: ${ENTRYPOINT_PASSWORD}
     container_name: cheese-factory-service
     ports:
       - 8082:8082
@@ -73,7 +73,7 @@ services:
       context: ../
       dockerfile: infrastructure/henhouse/service/Dockerfile
     environment:
-      entrypoint_password: ${entrypoint_password}
+      ENTRYPOINT_PASSWORD: ${ENTRYPOINT_PASSWORD}
     container_name: henhouse-service
     ports:
       - 8083:8083
@@ -84,7 +84,7 @@ services:
       context: ../
       dockerfile: infrastructure/guardhouse/service/Dockerfile
     environment:
-      entrypoint_password: ${entrypoint_password}
+      ENTRYPOINT_PASSWORD: ${ENTRYPOINT_PASSWORD}
     container_name: guardhouse-service
     ports:
       - 8084:8084

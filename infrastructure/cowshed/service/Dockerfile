@@ -8,4 +8,4 @@ COPY cowshed cowshed
 
 RUN chmod +x ./gradlew && ./gradlew cowshed:bootJar --no-daemon
 
-ENTRYPOINT java -Dencryptor.password=${entrypoint_password} -jar cowshed/build/libs/cowshed-1.0-SNAPSHOT.jar
+ENTRYPOINT java -Dencryptor.password=${ENTRYPOINT_PASSWORD} -jar cowshed/build/libs/cowshed-1.0-SNAPSHOT.jar
